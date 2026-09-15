@@ -341,6 +341,111 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
  .aiActionsBar,.aiGoal{align-items:stretch;flex-direction:column}
  .aiEndpoint{justify-content:stretch}.aiEndpoint input{width:100%}
 }
+
+/* =========================================================
+   HENRY ENGLISH — REDESIGNED PRACTICE EXPERIENCE
+   No page scroll • all essential controls visible
+   ========================================================= */
+html,body{overflow:hidden!important}
+#practice .panel{overflow:hidden!important}
+.redesignedPractice{height:100%;min-height:0!important}
+.redesignedQcard{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.practiceHeader2{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 22px 10px;border-bottom:1px solid #edf0f6}
+.metaLine{display:flex;align-items:center;gap:9px;min-width:0}
+.topicText{font-size:12px;color:#778198;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.taskName{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#7a8499;font-weight:950;margin-top:7px}
+.headerRight{width:260px;display:flex;align-items:center;gap:12px}
+.qLabelBig{font-size:11px;font-weight:950;letter-spacing:1.2px;color:#5661d6;white-space:nowrap}
+.progressMini{height:7px;flex:1;background:#edf0f7;border-radius:99px;overflow:hidden}
+.progressMini i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5369ed,#8455e8);border-radius:99px;transition:width .3s}
+.questionTabsWrap{height:49px;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid #edf0f6;background:#fbfcff;flex:0 0 49px}
+.tabsTitle{font-size:8px;letter-spacing:1.3px;font-weight:950;color:#8992a5;white-space:nowrap}
+.questionTabs{display:flex;gap:7px;align-items:center;flex-wrap:nowrap;padding:0;border:0;overflow:visible}
+.questionTab{height:31px;min-width:42px;padding:0 11px;border:1px solid #e1e6f0;border-radius:10px;background:#f1f3f8;color:#66728a;font-size:10px;font-weight:950;cursor:pointer;transition:.18s}
+.questionTab.current{background:linear-gradient(135deg,#5669ec,#7956e7);border-color:transparent;color:#fff;box-shadow:0 7px 16px rgba(81,91,222,.20)}
+.questionTab.recorded{background:#e4f8ef;border-color:#ccefe1;color:#12855c}
+.questionTab.current.recorded{background:linear-gradient(135deg,#5669ec,#7956e7);color:#fff}
+.questionTab:hover{transform:translateY(-1px)}
+.practiceBody{display:grid;grid-template-columns:minmax(0,1fr) 342px;min-height:0;flex:1}
+.redesignedQuestionPanel{padding:25px 28px 16px;min-height:0;overflow:hidden}
+.redesignedQuestionPanel .questionInstruction{margin-bottom:9px}
+.redesignedQuestionPanel .qtext{font-size:clamp(24px,2.05vw,32px);line-height:1.26;margin-bottom:13px;max-width:950px}
+.redesignedQuestionPanel .qtext.compact{font-size:clamp(20px,1.7vw,26px)}
+.redesignedQuestionPanel .qtext.tiny{font-size:clamp(17px,1.45vw,21px)}
+.redesignedQuestionPanel .picture{flex:1;min-height:0}
+.redesignedQuestionPanel .toeicPicture{max-height:min(49vh,420px);max-width:94%;object-fit:contain}
+.redesignedQuestionPanel .pictureStage{min-height:0}
+.controlCenter{border-left:1px solid #e8edf5;background:#f7f9ff;padding:12px;display:grid;grid-template-rows:auto auto auto auto;gap:10px;min-height:0;overflow:hidden}
+.controlCard{border:1px solid #e0e6f2;border-radius:17px;background:#fff;box-shadow:0 6px 18px rgba(36,54,96,.055);padding:13px}
+.controlCardHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.controlEyebrow{font-size:7px;letter-spacing:1.5px;font-weight:950;color:#8b94a8;margin-bottom:3px}
+.controlCard h3{font-size:12px;color:#26385f;margin:0;font-weight:950}
+.timerCard{padding:13px 14px 12px;background:linear-gradient(180deg,#f1f5ff,#fff)}
+.timerTitle{justify-content:flex-start!important;margin:0!important;font-size:13px!important}
+.timerIcon{font-size:21px!important}
+.autoStartBadge{font-size:7px!important;padding:4px 7px!important;margin:0!important}
+.timerCircle{width:108px!important;height:108px!important;margin:9px auto 5px}
+.timerCircle:before{inset:7px}
+.timerCircle .clock{font-size:34px!important}
+.timerUnit{font-size:9px}
+.phase{font-size:8px;margin:3px 0 6px}
+.timerHelp{margin:0!important;padding:8px 9px!important;font-size:9px!important;line-height:1.4!important}
+.liveState{display:flex;align-items:center;gap:6px;margin-top:7px;padding:7px 8px;border-radius:10px;background:#f7f9fd;color:#61708c}
+.liveState b{font-size:9px}.liveState small{font-size:8px;margin-left:auto;color:#8a94a8}
+.stateDot{width:7px;height:7px;border-radius:50%;background:#5570ec;box-shadow:0 0 0 4px #e9edff}
+.recordingCard{min-height:0}
+.recordingBadge,.aiReadyPill{font-size:7px;letter-spacing:.8px;font-weight:950;padding:5px 7px;border-radius:99px;background:#f0f2f6;color:#7e889b;white-space:nowrap}
+.recordingBadge.ready{background:#e2f8ef;color:#11835b}
+.recordingEmpty{display:flex;align-items:center;gap:9px;padding:10px 0 7px}
+.micOrb{width:35px;height:35px;border-radius:11px;background:#edf1ff;display:grid;place-items:center;font-size:17px}
+.recordingEmpty b{display:block;font-size:9px;color:#4b5872}.recordingEmpty span{display:block;font-size:8px;color:#929bad;margin-top:2px}
+.recordingReady{margin-top:8px}
+.recordingMeta{display:flex;justify-content:space-between;gap:6px;margin-bottom:5px;font-size:8px;color:#14845d;font-weight:850}
+.recordingMeta small{color:#8b95a8;font-weight:700}
+#answerAudio{display:block;width:100%;height:34px}
+.recordingActions{display:flex;gap:7px;margin-top:8px}
+.recordingActions .btn{flex:1;padding:8px 6px!important;font-size:8px!important}
+.aiQuickCard{background:linear-gradient(180deg,#f3fff9,#fff)}
+.aiReadyPill{background:#fff0cf;color:#9a6a12}
+.aiReadyPill.ready{background:#e1f8ef;color:#13825b}
+.quickScoreRow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:9px 0}
+.quickScoreRow>div{border:1px solid #e4e9ef;border-radius:10px;padding:7px;background:#fff;text-align:center}
+.quickScoreRow span{display:block;font-size:7px;color:#8a94a7;font-weight:850}
+.quickScoreRow b{display:block;font-size:15px;color:#293d68;margin-top:2px}
+.quickAIText{font-size:8px;line-height:1.45;color:#707b90;margin-bottom:8px}
+.aiMainBtn{width:100%!important;padding:10px 8px!important;font-size:9px!important}
+.aiViewBtn{width:100%!important;padding:8px!important;font-size:8px!important;margin-top:6px}
+.controlActions{display:grid;grid-template-columns:105px 1fr;gap:8px;align-items:end}
+.controlActions .btn{height:38px;padding:0 9px;font-size:9px;border-radius:11px}
+.controlActions .nextBig{min-width:0!important}
+.questionBottom{margin-top:auto!important}
+.q2mode .redesignedQuestionPanel .toeicPicture{max-height:min(46vh,410px)}
+.q2mode .redesignedQuestionPanel{padding-top:18px}
+.q2mode .pictureStage{background:#f8faff;border:1px solid #e1e7f3;border-radius:18px;padding:9px;box-sizing:border-box}
+@media(max-height:760px) and (min-width:801px){
+ .practiceHeader2{padding-top:10px;padding-bottom:7px}
+ .questionTabsWrap{height:43px;flex-basis:43px}
+ .redesignedQuestionPanel{padding-top:17px}
+ .redesignedQuestionPanel .qtext{font-size:22px}
+ .timerCircle{width:92px!important;height:92px!important}
+ .timerCircle .clock{font-size:30px!important}
+ .controlCenter{gap:7px}
+ .controlCard{padding:10px}
+}
+@media(max-width:1050px) and (min-width:801px){
+ .practiceBody{grid-template-columns:minmax(0,1fr) 300px}
+ .headerRight{width:210px}
+}
+@media(max-width:800px){
+ html,body{overflow:auto!important}
+ .redesignedQcard{height:auto;min-height:100%}
+ .practiceBody{grid-template-columns:1fr}
+ .controlCenter{border-left:0;border-top:1px solid #e8edf5;overflow:visible}
+ .questionTabsWrap{overflow-x:auto}
+ .questionTabs{flex-wrap:nowrap}
+ .headerRight{width:180px}
+}
+
 </style>
 </head>
 <body>
@@ -398,70 +503,130 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
 
 <section id="practice" class="screen"><div class="shell"><div class="panel">
 <button class="back" onclick="exitPractice()">← Danh sách đề</button>
-<div class="practice noProcessRail">
-<div class="qcard">
-  <div class="appHeader">
-    <div class="crumb">HENRY ENGLISH • TOEIC SPEAKING</div>
-    <div class="appBrand"><span class="brandIcon">🎓</span><div><b>Henry English</b><small>TOEIC SPEAKING</small></div></div>
-    <div class="appTools">⌂ &nbsp; ⚙ &nbsp; 👨🏻 <button id="soundToggle" class="soundToggle" onclick="toggleHenrySound();event.stopPropagation()">🔊 Âm thanh</button></div>
-  </div>
 
-  <div class="qtop">
-    <div>
-      <span class="badge" id="practiceBadge"></span>
-      <div id="practiceTopic" class="sub" style="margin-top:6px"></div>
+<div class="practice redesignedPractice">
+  <div class="qcard redesignedQcard">
+
+    <div class="appHeader">
+      <div class="crumb">HENRY ENGLISH • TOEIC SPEAKING</div>
+      <div class="appBrand"><span class="brandIcon">🎓</span><div><b>Henry English</b><small>TOEIC SPEAKING</small></div></div>
+      <div class="appTools">
+        <span class="miniTool">⌂</span><span class="miniTool">⚙</span><span class="miniTool">👨🏻</span>
+        <button id="soundToggle" class="soundToggle" onclick="toggleHenrySound();event.stopPropagation()">🔊 Âm thanh</button>
+      </div>
     </div>
-    <span class="kicker" id="qLabel"></span>
+
+    <div class="practiceHeader2">
+      <div>
+        <div class="metaLine">
+          <span class="badge" id="practiceBadge"></span>
+          <span id="practiceTopic" class="topicText"></span>
+        </div>
+        <div class="taskName" id="taskName">Speaking Task</div>
+      </div>
+      <div class="headerRight">
+        <div class="qLabelBig" id="qLabel"></div>
+        <div class="progressMini"><i id="progressBar"></i></div>
+      </div>
+    </div>
+
+    <div class="questionTabsWrap">
+      <div class="tabsTitle">CÂU HỎI TRONG PART</div>
+      <div id="questionTabs" class="questionTabs"></div>
+    </div>
+
+    <div class="practiceBody">
+
+      <main class="questionPanel redesignedQuestionPanel">
+        <div class="questionInstruction">SPEAKING TASK</div>
+        <div id="qText" class="qtext"></div>
+        <div id="infoBox" class="info" style="display:none"></div>
+        <div id="pictureBox" class="picture" style="display:none"></div>
+
+        <div class="questionBottom">
+          <span id="questionCounter">Câu 1 / 1</span>
+          <span id="pictureTip" class="pictureTip" style="display:none">🖼️ Hình ảnh đầy đủ • Không cắt</span>
+        </div>
+      </main>
+
+      <aside class="controlCenter">
+        <div class="controlCard timerCard">
+          <div class="controlCardHead">
+            <div>
+              <div class="controlEyebrow">LIVE PRACTICE</div>
+              <div class="timerTitle"><span class="timerIcon">◷</span><span id="timerTitle">Preparation Time</span></div>
+            </div>
+            <div class="autoStartBadge">● AUTO</div>
+          </div>
+
+          <div class="timerCircle">
+            <div id="clock" class="clock"><span>45</span></div>
+            <div class="timerUnit">giây</div>
+          </div>
+
+          <div id="phase" class="phase">PREPARATION • 45s</div>
+          <div id="recordingHint" class="timerHelp">Đọc kỹ câu hỏi và chuẩn bị ý tưởng.</div>
+
+          <div class="liveState" id="liveState">
+            <span class="stateDot"></span><b>Đang chuẩn bị</b><small id="nextStatus">Tự động chuyển sang ghi âm</small>
+          </div>
+        </div>
+
+        <div class="controlCard recordingCard">
+          <div class="controlCardHead">
+            <div>
+              <div class="controlEyebrow">YOUR ANSWER</div>
+              <h3>🎙️ Bản ghi của bạn</h3>
+            </div>
+            <span id="recordingBadge" class="recordingBadge empty">CHƯA CÓ</span>
+          </div>
+
+          <div id="recordingEmpty" class="recordingEmpty">
+            <div class="micOrb">🎙️</div>
+            <div><b>Chưa có bản ghi</b><span>Bản ghi sẽ xuất hiện ở đây sau khi bạn trả lời.</span></div>
+          </div>
+
+          <div id="recordingReady" class="recordingReady" style="display:none">
+            <div class="recordingMeta"><span>✓ Đã lưu theo câu hỏi</span><small id="recordingSize">—</small></div>
+            <audio id="answerAudio" controls preload="metadata"></audio>
+          </div>
+
+          <div class="recordingActions">
+            <button id="replayBtn" class="btn secondary" onclick="replay()" style="display:none">🔊 NGHE LẠI</button>
+            <button id="redoBtn" class="btn ghost" onclick="redo()" style="display:none">🔄 GHI LẠI</button>
+          </div>
+        </div>
+
+        <div class="controlCard aiQuickCard">
+          <div class="controlCardHead">
+            <div>
+              <div class="controlEyebrow">AI COACH</div>
+              <h3>🤖 Chấm & nâng cấp</h3>
+            </div>
+            <span class="aiReadyPill" id="aiQuickStatus">CHƯA CHẤM</span>
+          </div>
+
+          <div class="quickScoreRow">
+            <div><span>Overall</span><b id="quickOverall">—</b></div>
+            <div><span>CEFR</span><b id="quickCEFR">—</b></div>
+            <div><span>TOEIC</span><b id="quickToeic">—</b></div>
+          </div>
+
+          <div class="quickAIText" id="quickAIText">Sau khi ghi âm, bấm nút bên dưới để xem transcript, điểm 6 tiêu chí, lỗi sai và câu trả lời mẫu.</div>
+
+          <button id="aiBtn" class="btn aiButton aiMainBtn" onclick="openAICoach()" style="display:none">🤖 AI CHẤM & GỢI Ý CÂU TRẢ LỜI</button>
+          <button id="viewAIResultBtn" class="btn ghost aiViewBtn" onclick="openAICoach()" style="display:none">Xem kết quả AI chi tiết →</button>
+        </div>
+
+        <div class="controlActions">
+          <button id="skipBtn" class="btn ghost skipBtn" onclick="skipQuestion()">⏭ BỎ QUA</button>
+          <button id="nextBtn" class="btn primary nextBig" onclick="nextQuestion()" style="display:none">CÂU TIẾP THEO →</button>
+        </div>
+      </aside>
+    </div>
   </div>
-  <div class="progress"><span id="progressBar"></span></div>
-
-  <div class="practiceGrid">
-    <aside class="questionNav">
-      <div class="navTitle">MOCK TEST</div>
-      <div class="navTest" id="navTestTitle">Mock Test</div>
-      <div id="questionNavList"></div>
-      <div class="navProgress"><span>Tiến độ bài</span><b id="navProgressText">1 / 11</b><i><em id="navProgressBar"></em></i></div>
-      <button class="backList" onclick="exitPractice()">← Quay lại danh sách</button>
-    </aside>
-
-    <main class="questionPanel">
-      <div class="questionInstruction">SPEAKING TASK</div>
-      <div id="qText" class="qtext"></div>
-      <div id="infoBox" class="info" style="display:none"></div>
-      <div id="pictureBox" class="picture" style="display:none"></div>
-      <div class="questionBottom">
-        <span id="questionCounter">Câu 2 / 11</span>
-        <span class="pictureTip" id="pictureTip">🖼️ Hình ảnh đầy đủ • Không cắt</span>
-      </div>
-    </main>
-
-    <aside class="timerPanel">
-      <div class="timerTitle"><span class="timerIcon">◷</span><span id="timerTitle">Thời gian chuẩn bị</span></div><div class="autoStartBadge">● TỰ ĐỘNG BẮT ĐẦU</div>
-      <div class="timerCircle">
-        <div id="clock" class="clock"><span>45</span></div>
-        <div class="timerUnit">giây</div>
-      </div>
-      <div class="timerHelp" id="recordingHint">Bạn có thời gian để quan sát bức tranh và chuẩn bị nội dung trước khi ghi âm.</div>
-      <div class="phase" id="phase">PREPARATION • 45s</div>
-      <div class="processSteps">
-        <div class="step active"><b>1</b><span>Preparation<small>Chuẩn bị</small></span></div>
-        <div class="step"><b>2</b><span>Recording<small>Ghi âm</small></span></div>
-        <div class="step"><b>3</b><span>Review<small>Nghe lại / Ghi âm lại</small></span></div>
-        <div class="step"><b>4</b><span>Next<small>Câu tiếp theo</small></span></div>
-      </div>
-      <div class="timerActions">
-        <button id="skipBtn" class="btn ghost skipBtn" onclick="skipQuestion()">⏭ Bỏ qua câu</button>
-        <button id="startBtn" class="btn primary" onclick="startQuestion()">▶ Bắt đầu chuẩn bị</button>
-        <button id="replayBtn" class="btn secondary" onclick="replay()" style="display:none">🔊 Nghe lại</button><button id="aiBtn" class="btn aiButton" onclick="openAICoach()" style="display:none">🤖 AI Coach</button>
-        <button id="redoBtn" class="btn ghost" onclick="redo()" style="display:none">🔄 Ghi âm lại</button>
-        <button id="nextBtn" class="btn primary nextBig" onclick="nextQuestion()" style="display:none">CÂU TIẾP THEO →</button>
-      </div>
-      <div id="nextStatus" class="nextStatus">Câu hỏi đang chờ bắt đầu</div>
-      <audio id="answerAudio" controls preload="metadata" style="display:none;width:100%;margin-top:8px;border-radius:10px"></audio>
-    </aside>
-  </div>
-</div></div></div></div></section>
-
+</div>
+</div></div></section>
 
 <section id="aiCoach" class="screen">
 <div class="shell"><div class="panel">
@@ -1401,6 +1566,543 @@ renderParts();
   });
   ob.observe(clock,{childList:true,subtree:true,characterData:true});
 })();
+</script>
+
+
+<script>
+/* =========================================================
+   REDESIGNED PRACTICE CONTROLLER
+   Fixes:
+   1) Recording is never erased when changing Q.
+   2) Replay is always visible after a saved recording exists.
+   3) Q3-Q5 / Q6-Q8 / Q9-Q11 are directly clickable.
+   4) AI status is visible on the practice screen.
+   ========================================================= */
+
+function questionKey(){
+  const q=currentQuestions[currentQ];
+  return `${currentTest?.id || "x"}-${q?.q || "x"}`;
+}
+
+function syncRecordingUI(){
+  const key=questionKey();
+  const saved=recordingStore.get(key);
+  const blob=saved?.blob || (recordedQuestionKey===key ? recordedBlob : null);
+  const url=saved?.url || (recordedQuestionKey===key ? recordedUrl : null);
+
+  const empty=document.getElementById("recordingEmpty");
+  const ready=document.getElementById("recordingReady");
+  const badge=document.getElementById("recordingBadge");
+  const replayBtn=document.getElementById("replayBtn");
+  const redoBtn=document.getElementById("redoBtn");
+  const audio=document.getElementById("answerAudio");
+  const size=document.getElementById("recordingSize");
+
+  if(blob && url){
+    empty.style.display="none";
+    ready.style.display="block";
+    badge.textContent="✓ ĐÃ LƯU";
+    badge.classList.add("ready");
+    replayBtn.style.display="inline-flex";
+    redoBtn.style.display="inline-flex";
+    size.textContent=`${Math.max(1,Math.round(blob.size/1024))} KB`;
+    if(audio.src!==url){
+      audio.src=url;
+      audio.load();
+    }
+  }else{
+    empty.style.display="flex";
+    ready.style.display="none";
+    badge.textContent="CHƯA CÓ";
+    badge.classList.remove("ready");
+    replayBtn.style.display="none";
+    redoBtn.style.display="none";
+    audio.removeAttribute("src");
+    audio.load();
+  }
+
+  const aiBtn=document.getElementById("aiBtn");
+  if(aiBtn) aiBtn.style.display=(blob && url) ? "block" : "none";
+
+  const aiState=document.getElementById("aiQuickStatus");
+  const quickText=document.getElementById("quickAIText");
+  const resultForQuestion=(window.henryAIResults||{})[key];
+
+  const viewBtn=document.getElementById("viewAIResultBtn");
+  if(resultForQuestion){
+    if(aiState){aiState.textContent="✓ ĐÃ CHẤM";aiState.classList.add("ready");}
+    if(viewBtn) viewBtn.style.display="block";
+    if(aiBtn) aiBtn.textContent="🤖 XEM / CHẤM LẠI AI";
+    const d=resultForQuestion;
+    const overall=d.overall_score ?? "—";
+    const cefr=d.cefr ?? "—";
+    const toeic=d.toeic_speaking ?? d.toeicSpeaking ?? "—";
+    document.getElementById("quickOverall").textContent=overall;
+    document.getElementById("quickCEFR").textContent=cefr;
+    document.getElementById("quickToeic").textContent=toeic;
+    if(quickText) quickText.textContent=d.summary || "Đã có kết quả AI. Bấm xem chi tiết để xem transcript, 6 tiêu chí và câu trả lời mẫu.";
+  }else{
+    if(aiState){aiState.textContent="CHƯA CHẤM";aiState.classList.remove("ready");}
+    if(viewBtn) viewBtn.style.display="none";
+    if(aiBtn) aiBtn.textContent="🤖 AI CHẤM & GỢI Ý CÂU TRẢ LỜI";
+    document.getElementById("quickOverall").textContent="—";
+    document.getElementById("quickCEFR").textContent="—";
+    document.getElementById("quickToeic").textContent="—";
+    if(quickText) quickText.textContent=blob ? "Bản ghi đã sẵn sàng. AI có thể transcript, chấm 6 tiêu chí, xác định CEFR và viết lại câu trả lời tốt hơn." : "Sau khi ghi âm, bấm nút bên dưới để xem transcript, điểm 6 tiêu chí, lỗi sai và câu trả lời mẫu.";
+  }
+}
+
+function renderQuestionTabs(){
+  const box=document.getElementById("questionTabs");
+  if(!box)return;
+  box.innerHTML=currentQuestions.map((q,i)=>{
+    const key=`${currentTest?.id || "x"}-${q.q}`;
+    const saved=recordingStore.has(key);
+    return `<button type="button" class="questionTab ${i===currentQ?"current ":""}${saved?"recorded":""}" onclick="goToQuestion(${i})">Q${q.q}${saved?" ✓":""}</button>`;
+  }).join("");
+}
+
+function loadRecordingForCurrentQuestion(){
+  const key=questionKey();
+  const saved=recordingStore.get(key);
+  if(saved){
+    recordedBlob=saved.blob;
+    recordedUrl=saved.url;
+    recordedMimeType=saved.mime || saved.type || "";
+    recordedQuestionKey=key;
+    audioUrl=recordedUrl;
+  }else{
+    recordedBlob=null;
+    recordedUrl=null;
+    recordedMimeType="";
+    recordedQuestionKey="";
+    audioUrl=null;
+  }
+  syncRecordingUI();
+}
+
+function renderQuestion(){
+  const q=currentQuestions[currentQ];
+  if(!q)return;
+
+  clearTimer();
+  if(recorder && recorder.state!=="inactive"){
+    try{recorder.stop()}catch(e){}
+  }
+  recorder=null;
+
+  document.querySelector(".qcard")?.classList.toggle("q2mode", q.q===2);
+  document.getElementById("practiceBadge").textContent=`MOCK TEST ${String(currentTest.id).padStart(2,"0")} • Q${q.q}`;
+  document.getElementById("practiceTopic").textContent=currentTest.topic;
+  document.getElementById("qLabel").textContent=`QUESTION ${q.q}`;
+  document.getElementById("taskName").textContent=(partInfo.find(p=>p.qs.includes(q.q))?.name || "Speaking Task").toUpperCase();
+  document.getElementById("timerTitle").textContent=q.q===2 ? "Preparation Time • Picture" : "Preparation Time";
+  document.getElementById("questionCounter").textContent=`Câu ${currentQ+1} / ${currentQuestions.length}`;
+  document.getElementById("progressBar").style.width=((currentQ+1)/currentQuestions.length*100)+"%";
+
+  const qTextEl=document.getElementById("qText");
+  qTextEl.textContent=q.text;
+  qTextEl.classList.remove("compact","tiny");
+  if(q.text.length>300) qTextEl.classList.add("tiny");
+  else if(q.text.length>190) qTextEl.classList.add("compact");
+
+  const info=document.getElementById("infoBox");
+  const pic=document.getElementById("pictureBox");
+  const tip=document.getElementById("pictureTip");
+  info.style.display="none";
+  pic.style.display="none";
+  tip.style.display="none";
+
+  if(q.q>=6 && q.q<=8 && currentTest.info){
+    info.innerHTML=`<div class="infoTitle">📋 ${escapeHtml(currentTest.info.title)}</div>`+
+      currentTest.info.pairs.map(x=>`<div class="infoRow"><b>${escapeHtml(x[0])}</b><span>${escapeHtml(x[1])}</span></div>`).join("");
+    info.style.display="block";
+  }
+
+  if(q.q===2){
+    const src=PICTURE_ASSETS[currentTest.id-1];
+    pic.innerHTML=`<div class="pictureStage">
+      <img src="${src}" alt="TOEIC Speaking picture ${String(currentTest.id).padStart(2,"0")}" class="toeicPicture" loading="eager">
+      <div class="pictureCaption">PICTURE ${String(currentTest.id).padStart(2,"0")} • Describe the picture</div>
+    </div>`;
+    pic.style.display="flex";
+    tip.style.display="inline";
+  }
+
+  document.getElementById("phase").textContent=`PREPARATION • ${q.prep}s`;
+  document.getElementById("recordingHint").textContent="Đọc kỹ câu hỏi và chuẩn bị ý tưởng. Hệ thống sẽ tự chuyển sang ghi âm.";
+  document.getElementById("nextStatus").textContent=`Tự động bắt đầu • Câu ${currentQ+1}/${currentQuestions.length}`;
+  document.getElementById("liveState").innerHTML=`<span class="stateDot"></span><b>Đang chuẩn bị</b><small>Tự động ghi âm sau ${q.prep}s</small>`;
+
+  document.getElementById("skipBtn").style.display="inline-flex";
+  document.getElementById("nextBtn").style.display="none";
+
+  loadRecordingForCurrentQuestion();
+  renderQuestionTabs();
+
+  setTimer(q.prep);
+  setTimeout(()=>{
+    if(currentQuestions[currentQ]===q) startQuestion(true);
+  },180);
+}
+
+function goToQuestion(index){
+  if(index<0 || index>=currentQuestions.length)return;
+  if(recorder && recorder.state!=="inactive"){
+    try{recorder.stop()}catch(e){}
+  }
+  clearTimer();
+  currentQ=index;
+  renderQuestion();
+  toast(`Đã chuyển sang Q${currentQuestions[currentQ].q}.`);
+}
+
+function replay(){
+  const key=questionKey();
+  const saved=recordingStore.get(key);
+  const url=saved?.url || (recordedQuestionKey===key ? recordedUrl : null);
+  const audio=document.getElementById("answerAudio");
+  if(!url){toast("Câu này chưa có bản ghi.");return}
+  audio.src=url;
+  audio.style.display="block";
+  audio.currentTime=0;
+  audio.play().catch(()=>toast("Nếu chưa tự phát, bấm nút ▶ trên trình phát."));
+  updateProcessSteps("review");
+}
+
+function redo(){
+  const key=questionKey();
+  const old=recordingStore.get(key);
+  if(old?.url && old.url!==recordedUrl){ /* keep old URL until replacement is complete */ }
+  recordedBlob=null; recordedUrl=null; recordedMimeType=""; recordedQuestionKey="";
+  recordingStore.delete(key);
+  syncRecordingUI();
+  renderQuestionTabs();
+  const q=currentQuestions[currentQ];
+  clearTimer();
+  setTimer(q.prep);
+  document.getElementById("phase").textContent=`PREPARATION • ${q.prep}s`;
+  document.getElementById("recordingHint").textContent="Chuẩn bị lại câu trả lời.";
+  document.getElementById("nextBtn").style.display="none";
+  document.getElementById("aiBtn").style.display="none";
+  document.getElementById("viewAIResultBtn").style.display="none";
+  if(window.henryAIResults) delete window.henryAIResults[key];
+  startQuestion(false);
+}
+
+function nextQuestion(){
+  clearTimer();
+  if(recorder && recorder.state!=="inactive"){
+    try{recorder.stop()}catch(e){}
+  }
+  recorder=null;
+  if(currentQ<currentQuestions.length-1){
+    currentQ++;
+    nextSound();
+    renderQuestion();
+  }else{
+    show("done");
+    successSound();
+  }
+}
+
+function skipQuestion(){
+  clearTimer();
+  if(recorder && recorder.state!=="inactive"){
+    try{recorder.stop()}catch(e){}
+  }
+  recorder=null;
+  if(currentQ<currentQuestions.length-1){
+    currentQ++;
+    skipSound();
+    renderQuestion();
+    toast("Đã bỏ qua câu này.");
+  }else{
+    show("done");
+    toast("Đã bỏ qua câu cuối.");
+  }
+}
+
+function restartTest(){
+  clearTimer();
+  if(recorder && recorder.state!=="inactive"){try{recorder.stop()}catch(e){}}
+  recorder=null;
+  recordingStore.forEach(v=>{try{URL.revokeObjectURL(v.url)}catch(e){}});
+  recordingStore.clear();
+  window.henryAIResults={};
+  currentQ=0;
+  show("practice");
+  renderQuestion();
+}
+
+function exitPractice(){
+  clearTimer();
+  if(recorder && recorder.state!=="inactive"){try{recorder.stop()}catch(e){}}
+  recorder=null;
+  show("tests");
+}
+
+/* Make the recorder's final blob reliably available to the new UI. */
+function stopRecording(){
+  if(!recorder || recorder.state==="inactive")return;
+  try{recorder.stop()}catch(e){}
+}
+
+/* Patch the existing recorder finalization by wrapping its UI after it has saved. */
+const __oldRenderAIResult = window.renderAIResult;
+window.henryAIResults = window.henryAIResults || {};
+
+function renderAIResult(data){
+  lastAIResult=data||{};
+  const key=questionKey();
+  window.henryAIResults[key]=data||{};
+  if(typeof __oldRenderAIResult==="function") __oldRenderAIResult(data);
+  syncRecordingUI();
+}
+
+/* If a browser returns a MediaRecorder result, keep it per question. */
+document.addEventListener("henry-recording-saved",e=>{
+  syncRecordingUI();
+  renderQuestionTabs();
+});
+
+/* Keep the AI screen and practice screen synchronized after navigation. */
+const __oldOpenAICoach = window.openAICoach;
+function openAICoach(){
+  const key=questionKey();
+  const saved=recordingStore.get(key);
+  if(saved){
+    recordedBlob=saved.blob;recordedUrl=saved.url;recordedMimeType=saved.mime||"";recordedQuestionKey=key;
+  }
+  if(!recordedBlob || !recordedUrl){
+    toast("Chưa có bản ghi cho câu này. Hãy trả lời và ghi âm trước.");
+    return;
+  }
+  if(typeof __oldOpenAICoach==="function") __oldOpenAICoach();
+}
+
+/* Existing MediaRecorder onstop writes to recordingStore; refresh the visible controls. */
+const __originalStartRecording = window.beginRecording;
+if(typeof __originalStartRecording==="function"){
+  /* no-op wrapper intentionally leaves the proven recorder implementation intact */
+}
+</script>
+
+
+<script>
+/* FINAL RECORDING FIX — capture the question key at recording start.
+   This prevents a recording from being attached to the next question
+   when the user switches Q while MediaRecorder is finishing. */
+async function beginRecording(sec){
+  clearTimer();
+
+  const qAtStart = currentQuestions[currentQ];
+  const testIdAtStart = currentTest?.id;
+  const qKeyAtStart = `${testIdAtStart || "x"}-${qAtStart?.q || "x"}`;
+  const qIndexAtStart = currentQ;
+
+  // Clear only the ACTIVE recording variables. Never revoke the URL
+  // stored in recordingStore unless the user explicitly chooses GHI LẠI.
+  recordedBlob=null;
+  recordedUrl=null;
+  recordedMimeType="";
+  recordedQuestionKey="";
+  audioUrl=null;
+  recordingFinalizing=false;
+
+  recordStartSound();
+  const c=document.getElementById("clock");
+  c.classList.add("record");
+  document.getElementById("phase").textContent="● RECORDING";
+  document.getElementById("recordingHint").textContent="🎙️ Đang mở microphone…";
+  document.getElementById("liveState").innerHTML=`<span class="stateDot"></span><b>Đang ghi âm</b><small>Hãy nói tự nhiên</small>`;
+
+  try{
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error("MIC_UNAVAILABLE");
+    const stream=await navigator.mediaDevices.getUserMedia({
+      audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}
+    });
+
+    // User may have changed question while permission dialog was open.
+    if(currentTest?.id!==testIdAtStart || currentQuestions[currentQ]?.q!==qAtStart?.q){
+      stream.getTracks().forEach(t=>t.stop());
+      return;
+    }
+
+    const chunks=[];
+    const options={};
+    if(window.MediaRecorder && MediaRecorder.isTypeSupported){
+      if(MediaRecorder.isTypeSupported("audio/webm;codecs=opus")) options.mimeType="audio/webm;codecs=opus";
+      else if(MediaRecorder.isTypeSupported("audio/webm")) options.mimeType="audio/webm";
+      else if(MediaRecorder.isTypeSupported("audio/mp4")) options.mimeType="audio/mp4";
+    }
+
+    recorder=new MediaRecorder(stream,options);
+    const activeRecorder=recorder;
+
+    activeRecorder.ondataavailable=e=>{
+      if(e.data && e.data.size>0) chunks.push(e.data);
+    };
+
+    activeRecorder.onerror=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      if(recorder===activeRecorder) recorder=null;
+      recordingFinalizing=false;
+      if(currentTest?.id===testIdAtStart && currentQuestions[currentQ]?.q===qAtStart?.q){
+        finishRecording(false);
+        syncRecordingUI();
+      }
+    };
+
+    activeRecorder.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      if(recorder===activeRecorder) recorder=null;
+
+      if(chunks.length){
+        const mime=activeRecorder.mimeType || chunks[0].type || "audio/webm";
+        const blob=new Blob(chunks,{type:mime});
+        const url=URL.createObjectURL(blob);
+
+        // Save using the question that actually started the recording.
+        const old=recordingStore.get(qKeyAtStart);
+        if(old?.url && old.url!==url){
+          try{URL.revokeObjectURL(old.url)}catch(e){}
+        }
+
+        recordingStore.set(qKeyAtStart,{
+          blob,
+          url,
+          mime,
+          mimeType:mime,
+          size:blob.size,
+          q:qAtStart?.q,
+          testId:testIdAtStart
+        });
+
+        // Only update the visible player if the user is still on that Q.
+        if(currentTest?.id===testIdAtStart && currentQuestions[currentQ]?.q===qAtStart?.q){
+          recordedBlob=blob;
+          recordedUrl=url;
+          recordedMimeType=mime;
+          recordedQuestionKey=qKeyAtStart;
+          audioUrl=url;
+
+          const audio=document.getElementById("answerAudio");
+          if(audio){
+            audio.pause();
+            audio.src=url;
+            audio.style.display="block";
+            audio.load();
+          }
+          finishRecording(true);
+          syncRecordingUI();
+          renderQuestionTabs();
+        }
+      }else if(currentTest?.id===testIdAtStart && currentQuestions[currentQ]?.q===qAtStart?.q){
+        finishRecording(false);
+        syncRecordingUI();
+      }
+
+      recordingFinalizing=false;
+      document.dispatchEvent(new CustomEvent("henry-recording-saved",{detail:{key:qKeyAtStart}}));
+    };
+
+    activeRecorder.start(100);
+    document.getElementById("recordingHint").textContent="🔴 Đang ghi âm — hãy trả lời tự nhiên và rõ ràng.";
+    document.getElementById("nextStatus").textContent=`Recording • Q${qAtStart.q} • ${sec}s`;
+  }catch(e){
+    recorder=null;
+    document.getElementById("recordingHint").innerHTML="⚠️ Không thể mở microphone. Hãy cho phép Microphone và chạy trang bằng <b>localhost/HTTPS</b> rồi thử lại.";
+    finishRecording(false);
+    syncRecordingUI();
+    return;
+  }
+
+  let n=Number(sec)||0;
+  document.getElementById("clock").querySelector("span").textContent=n;
+  phaseTimer=setInterval(()=>{
+    // If user navigated away, do not keep this timer alive.
+    if(currentTest?.id!==testIdAtStart || currentQuestions[currentQ]?.q!==qAtStart?.q){
+      clearTimer();
+      return;
+    }
+
+    n--;
+    document.getElementById("clock").querySelector("span").textContent=Math.max(n,0);
+
+    if(n<=5 && n>0){
+      tone(n===1?920:720,.11,"triangle",.038);
+      const circle=document.querySelector(".timerCircle");
+      if(circle){circle.classList.remove("timerPulse");void circle.offsetWidth;circle.classList.add("timerPulse");}
+    }
+
+    if(n<=0){
+      clearTimer();
+      countdownSound(0);
+      document.getElementById("recordingHint").textContent="Đang hoàn tất bản ghi…";
+      if(recorder===activeRecorder && activeRecorder.state!=="inactive"){
+        recordingFinalizing=true;
+        try{activeRecorder.stop()}catch(e){recordingFinalizing=false;finishRecording(false)}
+      }else if(currentTest?.id===testIdAtStart && currentQuestions[currentQ]?.q===qAtStart?.q){
+        finishRecording(false);
+      }
+    }
+  },1000);
+}
+
+/* Re-define the Q loader with support for both mime and mimeType. */
+function loadRecordingForCurrentQuestion(){
+  const key=questionKey();
+  const saved=recordingStore.get(key);
+
+  if(saved){
+    recordedBlob=saved.blob || null;
+    recordedUrl=saved.url || null;
+    recordedMimeType=saved.mime || saved.mimeType || saved.type || "";
+    recordedQuestionKey=key;
+    audioUrl=recordedUrl;
+  }else{
+    recordedBlob=null;
+    recordedUrl=null;
+    recordedMimeType="";
+    recordedQuestionKey="";
+    audioUrl=null;
+  }
+  syncRecordingUI();
+
+  const savedResult=(window.henryAIResults||{})[key];
+  if(savedResult){
+    const s=savedResult;
+    document.getElementById("quickOverall").textContent=s.overall_score ?? "—";
+    document.getElementById("quickCEFR").textContent=s.cefr ?? "—";
+    document.getElementById("quickToeic").textContent=s.toeic_speaking ?? s.toeicSpeaking ?? "—";
+  }
+}
+
+/* GHI LẠI = delete only this Q's old recording, then start preparation. */
+function redo(){
+  clearTimer();
+  if(recorder && recorder.state!=="inactive"){try{recorder.stop()}catch(e){}}
+  recorder=null;
+
+  const key=questionKey();
+  const old=recordingStore.get(key);
+  if(old?.url){try{URL.revokeObjectURL(old.url)}catch(e){}}
+  recordingStore.delete(key);
+
+  if(window.henryAIResults) delete window.henryAIResults[key];
+  recordedBlob=null;recordedUrl=null;recordedMimeType="";recordedQuestionKey="";audioUrl=null;
+
+  syncRecordingUI();
+  renderQuestionTabs();
+
+  const q=currentQuestions[currentQ];
+  setTimer(q.prep);
+  document.getElementById("phase").textContent=`PREPARATION • ${q.prep}s`;
+  document.getElementById("recordingHint").textContent="Chuẩn bị lại câu trả lời.";
+  document.getElementById("nextBtn").style.display="none";
+  startQuestion(false);
+}
 </script>
 
 </body>
