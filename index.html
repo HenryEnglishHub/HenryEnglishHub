@@ -447,6 +447,63 @@ html,body{overflow:hidden!important}
 }
 
 </style>
+
+<style>
+/* ===== FINAL COMPACT FIX FROM USER-UPLOADED VERSION ===== */
+#practice .panel{padding:14px 18px 16px!important}
+#practice>.shell{height:min(780px,94vh)!important}
+#practice .back{margin:0 0 7px 2px!important;padding:2px 0!important;font-size:11px!important}
+#practice .practice{min-height:0!important;height:calc(100% - 20px)!important}
+#practice .redesignedQcard{min-height:0!important;height:100%!important}
+#practice .practiceHeader2{padding:9px 16px 7px!important;min-height:48px}
+#practice .questionTabsWrap{height:40px!important;flex-basis:40px!important;padding:0 16px!important}
+#practice .questionTab{height:28px!important;min-width:40px!important}
+#practice .practiceBody{grid-template-columns:minmax(0,1fr) 300px!important;min-height:0!important}
+#practice .redesignedQuestionPanel{padding:16px 20px 10px!important;min-height:0!important}
+#practice .redesignedQuestionPanel .qtext{font-size:clamp(20px,1.75vw,28px)!important;margin-bottom:8px!important}
+#practice .redesignedQuestionPanel .qtext.compact{font-size:clamp(17px,1.5vw,22px)!important}
+#practice .redesignedQuestionPanel .qtext.tiny{font-size:clamp(15px,1.3vw,19px)!important}
+#practice .redesignedQuestionPanel .toeicPicture{max-height:min(43vh,360px)!important}
+#practice .controlCenter{
+  padding:9px!important;gap:7px!important;
+  grid-template-rows:auto auto auto 38px!important;
+}
+#practice .controlCard{padding:10px!important;border-radius:14px!important}
+#practice .timerCard{padding:9px 11px!important}
+#practice .timerCircle{width:88px!important;height:88px!important;margin:6px auto 3px!important}
+#practice .timerCircle .clock{font-size:29px!important}
+#practice .timerUnit{font-size:8px!important}
+#practice .timerHelp{font-size:8px!important;padding:7px 8px!important}
+#practice .liveState{margin-top:5px!important;padding:5px 6px!important}
+#practice .recordingEmpty{padding:7px 0 4px!important}
+#practice .micOrb{width:30px!important;height:30px!important;font-size:14px!important}
+#practice .recordingActions{margin-top:5px!important}
+#practice .recordingActions .btn{padding:7px 5px!important}
+#practice .quickScoreRow{margin:6px 0!important}
+#practice .quickScoreRow>div{padding:5px!important}
+#practice .quickScoreRow b{font-size:13px!important}
+#practice .quickAIText{margin-bottom:5px!important;font-size:8px!important}
+#practice .aiMainBtn{padding:8px!important}
+#practice .aiViewBtn{padding:6px!important}
+#practice .controlActions{grid-template-columns:90px 1fr!important}
+#practice .controlActions .btn{height:34px!important;font-size:8px!important}
+#practice .questionBottom{padding-top:7px!important;margin-top:6px!important}
+@media(max-height:760px) and (min-width:801px){
+  #practice .practiceHeader2{padding-top:6px!important;padding-bottom:5px!important}
+  #practice .questionTabsWrap{height:34px!important;flex-basis:34px!important}
+  #practice .redesignedQuestionPanel{padding-top:10px!important}
+  #practice .redesignedQuestionPanel .qtext{font-size:20px!important}
+  #practice .redesignedQuestionPanel .qtext.compact{font-size:17px!important}
+  #practice .redesignedQuestionPanel .qtext.tiny{font-size:15px!important}
+  #practice .redesignedQuestionPanel .toeicPicture{max-height:300px!important}
+  #practice .timerCircle{width:76px!important;height:76px!important}
+  #practice .timerCircle .clock{font-size:26px!important}
+}
+@media(max-width:1050px) and (min-width:801px){
+  #practice .practiceBody{grid-template-columns:minmax(0,1fr) 270px!important}
+}
+</style>
+
 </head>
 <body>
 <div id="app">
@@ -2103,6 +2160,105 @@ function redo(){
   document.getElementById("nextBtn").style.display="none";
   startQuestion(false);
 }
+</script>
+
+
+<script>
+/* =========================================================
+   FINAL AUTO-AI FLOW
+   Preparation -> Recording -> Save -> AI Coach -> Analyze
+   The real AI result is shown only when the backend responds.
+   ========================================================= */
+(function(){
+  let autoAIStartedForKey = null;
+
+  const baseFinishRecording = window.finishRecording;
+
+  window.finishRecording = function(hasAudio=true){
+    if(typeof baseFinishRecording === "function"){
+      baseFinishRecording(hasAudio);
+    }
+
+    if(!hasAudio) return;
+
+    const key = (typeof questionKey === "function") ? questionKey() : "";
+    if(!key || autoAIStartedForKey === key) return;
+
+    // MediaRecorder's onstop has already stored the Blob before this call.
+    const saved = recordingStore && recordingStore.get ? recordingStore.get(key) : null;
+    if(!saved || !saved.blob || !saved.url) return;
+
+    autoAIStartedForKey = key;
+
+    setTimeout(async ()=>{
+      try{
+        // Make sure we are still on the same question.
+        if(typeof questionKey === "function" && questionKey() !== key) return;
+
+        // Load the saved recording into the visible AI screen.
+        if(typeof openAICoach === "function"){
+          openAICoach();
+        }
+
+        // Give the AI screen time to render.
+        await new Promise(r=>setTimeout(r,220));
+
+        if(typeof analyzeWithAI === "function"){
+          const btn=document.getElementById("aiAnalyzeBtn");
+          if(btn && !btn.disabled){
+            document.getElementById("aiStatus").textContent="● ĐANG CHẤM";
+            await analyzeWithAI();
+          }
+        }
+      }catch(err){
+        console.warn("Auto AI error:",err);
+      }
+    },350);
+  };
+
+  /* Returning from AI always returns to the exact question. */
+  const baseBackFromAI = window.backFromAI;
+  window.backFromAI = function(){
+    if(typeof show === "function") show("practice");
+    setTimeout(()=>{
+      try{
+        if(typeof renderQuestion === "function") renderQuestion();
+        if(typeof loadRecordingForCurrentQuestion === "function") loadRecordingForCurrentQuestion();
+      }catch(e){}
+    },30);
+  };
+
+  /* When AI result arrives, mark the current question as graded. */
+  const baseRenderAIResult = window.renderAIResult;
+  window.renderAIResult = function(data){
+    if(typeof baseRenderAIResult === "function") baseRenderAIResult(data);
+    try{
+      const key=questionKey();
+      window.henryAIResults=window.henryAIResults||{};
+      window.henryAIResults[key]=data||{};
+      if(typeof syncRecordingUI==="function") syncRecordingUI();
+      if(typeof renderQuestionTabs==="function") renderQuestionTabs();
+      const status=document.getElementById("aiStatus");
+      if(status && !String(status.textContent).includes("BACKEND ERROR")){
+        status.textContent="● ĐÃ CHẤM";
+      }
+    }catch(e){}
+  };
+
+  /* Prevent an old question from triggering AI after the learner starts another Q. */
+  const baseGoToQuestion = window.goToQuestion;
+  window.goToQuestion = function(index){
+    autoAIStartedForKey=null;
+    if(typeof baseGoToQuestion==="function") baseGoToQuestion(index);
+  };
+
+  /* New test: reset auto-AI guard. */
+  const baseOpenTest = window.openTest;
+  window.openTest = function(id){
+    autoAIStartedForKey=null;
+    if(typeof baseOpenTest==="function") baseOpenTest(id);
+  };
+})();
 </script>
 
 </body>
