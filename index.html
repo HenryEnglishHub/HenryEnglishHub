@@ -187,14 +187,15 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
 .questionBottom{border-top:1px solid #e9edf5;margin-top:8px;padding:10px 0 0;display:flex;justify-content:space-between;align-items:center;color:#6c7890;font-size:10px;font-weight:900}
 .pictureTip{color:#6673a4}
 .timerPanel{margin:14px 14px 14px 0;border:1px solid #dfe6f7;border-radius:20px;background:linear-gradient(180deg,#f5f7ff,#fbfcff);padding:17px 14px;display:flex;flex-direction:column;align-items:center;overflow:hidden}
-.timerTitle{font-size:15px;color:#304477;font-weight:950;margin-bottom:9px}.timerIcon{color:#4668df}
+.timerTitle{font-size:15px;color:#304477;font-weight:950;margin-bottom:6px}.autoStartBadge{font-size:8px;letter-spacing:1px;font-weight:950;color:#4c62d5;background:#e9edff;border-radius:99px;padding:5px 8px;margin-bottom:9px}.timerIcon{color:#4668df}
 .timerCircle{width:142px;height:142px;border-radius:50%;background:conic-gradient(#506ce9 0deg,#dce5ff 0deg);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
 .timerCircle:before{content:"";position:absolute;inset:9px;background:#fff;border-radius:50%}.timerCircle .clock{background:none!important;width:auto;height:auto;position:relative;font-size:43px;font-weight:950;color:#273963}.timerCircle .clock:after{display:none}.timerUnit{font-size:10px;font-weight:850;color:#61709b;position:relative}
 .timerHelp{width:100%;box-sizing:border-box;margin-top:11px;padding:10px 11px;border-radius:12px;background:#eaf0ff;color:#4763a9;font-size:10px;line-height:1.45;font-weight:700}
 .phase{font-size:9px;letter-spacing:1px;font-weight:950;color:#6c7896;margin:9px 0}
 .processSteps{width:100%;border-top:1px solid #e6eaf4;margin-top:2px;padding-top:6px}
 .step{display:flex;gap:8px;align-items:center;padding:6px 2px;color:#9aa4b8}.step b{width:26px;height:26px;border-radius:50%;background:#e8ecf4;display:grid;place-items:center;font-size:10px}.step span{font-size:10px;font-weight:850}.step small{display:block;font-size:8px;font-weight:650;margin-top:1px}.step.active{color:#3d59d2}.step.active b{background:#4c67ed;color:#fff}
-.timerActions{width:100%;display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:9px}.timerActions .btn{flex:1;min-width:105px;padding:10px 8px;font-size:10px;border-radius:11px}.timerActions .nextBig{min-width:100%;font-size:11px}
+.timerActions{width:100%;display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:9px}.timerActions .btn{flex:1;min-width:105px;padding:10px 8px;font-size:10px;border-radius:11px}
+.timerActions #startBtn{display:none!important}.timerActions .nextBig{min-width:100%;font-size:11px}
 .nextStatus{text-align:center;width:100%;font-size:9px;color:#79849a;font-weight:750;margin-top:7px}
 .record .timerCircle{background:conic-gradient(#e64d63 0deg,#ffdce2 0deg)}.record .timerCircle .clock{color:#d63f55}
 @media(max-width:1100px){.practiceGrid{grid-template-columns:170px minmax(0,1fr) 235px}.questionNav{font-size:10px}.timerPanel{padding:13px 10px}.timerCircle{width:125px;height:125px}.timerCircle .clock{font-size:38px}.toeicPicture{max-height:350px}}
@@ -208,6 +209,45 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
 .q2mode .pictureStage{background:#f8faff;border:1px solid #e1e7f3;border-radius:20px;padding:10px;box-sizing:border-box}
 .q2mode .toeicPicture{max-height:380px;max-width:100%;width:auto;height:auto;object-fit:contain;background:#fff}
 @media(max-height:800px) and (min-width:801px){.q2mode .toeicPicture{max-height:330px}}
+
+/* ===== Q2 LARGE FULL-IMAGE MODE ===== */
+.q2mode .questionPanel{padding-left:20px;padding-right:20px}
+.q2mode .picture{padding:8px 0;min-height:0}
+.q2mode .pictureStage{
+  width:100%;
+  height:100%;
+  min-height:0;
+  padding:12px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f7f9fd;
+  border:1px solid #dce4f1;
+  border-radius:22px;
+}
+.q2mode .toeicPicture{
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:455px;
+  object-fit:contain;
+  border-radius:15px;
+  border:1px solid #d8e0ec;
+  background:#fff;
+  box-shadow:0 12px 28px rgba(35,55,100,.12);
+}
+.q2mode .pictureCaption{margin-top:8px}
+.q2mode .questionBottom{margin-top:8px}
+#pictureTip{display:none}
+.q2mode #pictureTip{display:inline-flex}
+
+@media(max-height:900px) and (min-width:801px){
+  .q2mode .toeicPicture{max-height:410px}
+}
+@media(max-height:760px) and (min-width:801px){
+  .q2mode .toeicPicture{max-height:340px}
+}
 </style>
 </head>
 <body>
@@ -306,7 +346,7 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
     </main>
 
     <aside class="timerPanel">
-      <div class="timerTitle"><span class="timerIcon">◷</span><span id="timerTitle">Thời gian chuẩn bị</span></div>
+      <div class="timerTitle"><span class="timerIcon">◷</span><span id="timerTitle">Thời gian chuẩn bị</span></div><div class="autoStartBadge">● TỰ ĐỘNG BẮT ĐẦU</div>
       <div class="timerCircle">
         <div id="clock" class="clock"><span>45</span></div>
         <div class="timerUnit">giây</div>
@@ -504,32 +544,65 @@ function renderQuestion(){
  }
  setTimer(q.prep);
  document.getElementById("phase").textContent=`PREPARATION • ${q.prep}s`;
- document.getElementById("recordingHint").textContent="Nhấn Bắt đầu để vào thời gian chuẩn bị.";
+ document.getElementById("recordingHint").textContent="Chuẩn bị sẵn sàng… thời gian sẽ tự bắt đầu.";
  document.getElementById("nextStatus").textContent=`Câu ${currentQ+1} / ${currentQuestions.length}`;
- document.getElementById("startBtn").style.display="inline-flex";
+ document.getElementById("startBtn").style.display="none";
  ["replayBtn","redoBtn","nextBtn"].forEach(x=>document.getElementById(x).style.display="none");
  document.getElementById("skipBtn").style.display="inline-flex";
+
+ // Tự động bắt đầu ngay khi vào câu hỏi.
+ clearTimer();
+ setTimeout(()=>{
+   if(currentQuestions[currentQ]===q) startQuestion(true);
+ },180);
 }
 
 function setTimer(n){
  const c=document.getElementById("clock");c.classList.remove("record");c.querySelector("span").textContent=n;
  c.style.background="conic-gradient(var(--p) 0deg,#edf0f6 0deg)";
 }
-function startQuestion(){
+function startQuestion(autoStart=false){
  const q=currentQuestions[currentQ];if(!q){toast("Không có câu hỏi.");return}
  document.getElementById("startBtn").style.display="none";
+ if(!autoStart) startSound();
  countdown(q.prep,"PREPARATION TIME",()=>beginRecording(q.response));
 }
 function countdown(sec,label,done){
- clearTimer();let n=sec;document.getElementById("phase").textContent=label;
+ clearTimer();
+ let n=sec;
+ document.getElementById("phase").textContent=label;
  document.getElementById("recordingHint").textContent=label==="PREPARATION TIME"?"Đọc kỹ câu hỏi và chuẩn bị ý tưởng.":"";
- document.getElementById("clock").querySelector("span").textContent=n;
- phaseTimer=setInterval(()=>{n--;document.getElementById("clock").querySelector("span").textContent=n;
- if(n<=0){clearTimer();done()}},1000);
+ const clock=document.getElementById("clock");
+ clock.querySelector("span").textContent=n;
+
+ // Tick đầu tiên ngay khi bắt đầu, sau đó mỗi giây.
+ tone(520,.055,"sine",.018);
+ let last=n;
+ phaseTimer=setInterval(()=>{
+   n--;
+   clock.querySelector("span").textContent=n;
+
+   // Đồng hồ có tiếng tick mỗi giây; 5 giây cuối nổi bật hơn.
+   if(n<=5 && n>0){
+     tone(n===1?920:720,.11,"triangle",.038);
+     const circle=document.querySelector(".timerCircle");
+     if(circle){circle.classList.remove("timerPulse");void circle.offsetWidth;circle.classList.add("timerPulse");}
+   }else if(n>0){
+     tone(500,.045,"sine",.014);
+   }
+
+   if(n<=0){
+     clearTimer();
+     countdownSound(0);
+     done();
+   }
+   last=n;
+ },1000);
 }
 async function beginRecording(sec){
+ recordStartSound();
  const c=document.getElementById("clock");c.classList.add("record");document.getElementById("phase").textContent="● RECORDING";
- document.getElementById("recordingHint").textContent="🎙️ Đang yêu cầu quyền microphone…";
+ document.getElementById("recordingHint").textContent="🎙️ Hết thời gian chuẩn bị — đang chuyển sang ghi âm…";
  try{
   if(audioUrl){URL.revokeObjectURL(audioUrl);audioUrl=null}
   const stream=await navigator.mediaDevices.getUserMedia({audio:true});let chunks=[];
@@ -541,6 +614,7 @@ async function beginRecording(sec){
  phaseTimer=setInterval(()=>{n--;document.getElementById("clock").querySelector("span").textContent=n;if(n<=0){clearTimer();document.getElementById("recordingHint").textContent="Đang xử lý bản ghi…";if(recorder&&recorder.state!=="inactive")recorder.stop();else finishRecording(false)}},1000);
 }
 function finishRecording(hasAudio=true){
+ successSound();
  document.getElementById("phase").textContent="REVIEW YOUR ANSWER";
  document.getElementById("recordingHint").textContent=hasAudio?"✅ Bản ghi đã sẵn sàng. Nghe lại hoặc ghi âm lại trước khi sang câu tiếp theo.":"Bạn có thể ghi âm lại sau khi cấp quyền microphone.";
  document.getElementById("clock").classList.remove("record");
@@ -551,7 +625,7 @@ function finishRecording(hasAudio=true){
 }
 function replay(){if(audioUrl)new Audio(audioUrl).play();else toast("Chưa có bản ghi trong phiên này.")}
 function replayLast(){replay()}
-function redo(){stopActiveRecording();renderQuestion();startQuestion()}
+function redo(){stopActiveRecording();renderQuestion()}
 function stopActiveRecording(){
  clearTimer();
  if(recorder && recorder.state!=="inactive"){
