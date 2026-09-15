@@ -264,6 +264,68 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
 .q2mode .toeicPicture{max-width:100%;max-height:500px;width:auto;height:auto;object-fit:contain;background:#fff;border-radius:14px}
 @media(max-width:1050px){.q2mode .practiceGrid{grid-template-columns:1fr 250px}.q2mode .questionNav{display:none}.q2mode .toeicPicture{max-height:450px}}
 @media(max-width:800px){.q2mode .practiceGrid{grid-template-columns:1fr}.q2mode .timerPanel{max-width:none}.q2mode .pictureStage{min-height:0}.q2mode .toeicPicture{max-height:48vh}}
+
+/* ===== AI COACH ===== */
+.aiCoachWrap{height:calc(100vh - 64px);overflow:auto;padding:4px 2px 22px}
+.aiHero{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:14px}
+.aiHero h2{margin:4px 0 6px}
+.aiStatus{font-weight:900;font-size:12px;letter-spacing:.08em;padding:10px 14px;border-radius:999px;background:#eef8f1;color:#16834b;white-space:nowrap}
+.aiTopGrid,.aiTwoCols,.aiAnswerGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.aiQuestionCard,.aiRecordingCard{min-height:155px}
+.aiCardLabel{font-size:10px;font-weight:900;letter-spacing:.14em;color:#7c8496}
+.aiMeta{font-weight:900;margin:7px 0;color:#394052}
+.aiQuestionText{font-size:18px;line-height:1.55;font-weight:750}
+.aiPicturePreview img{max-height:150px;max-width:100%;object-fit:contain;border-radius:12px;margin-top:10px}
+.recordingState{font-weight:800;margin-top:8px;color:#16834b}
+.aiMiniActions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.aiActionsBar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.aiAnalyzeBtn{min-width:220px}
+.aiEndpoint{display:flex;align-items:center;gap:7px;flex:1;justify-content:flex-end}
+.aiEndpoint label{font-size:11px;font-weight:900;color:#778092}
+.aiEndpoint input{width:min(320px,40vw);border:1px solid #dfe4ed;border-radius:10px;padding:10px 11px;background:#fff}
+.aiLoading{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#f7f8fb;border:1px solid #e4e8f0;border-radius:14px;margin-bottom:14px}
+.aiLoading span{display:block;color:#788195;font-size:12px;margin-top:3px}
+.aiSpinner{width:22px;height:22px;border:3px solid #dfe4ed;border-top-color:#5b6cf0;border-radius:50%;animation:aiSpin .8s linear infinite}
+@keyframes aiSpin{to{transform:rotate(360deg)}}
+.aiResult{display:block}
+.aiScoreGrid{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.scoreHero,.scoreBox{display:flex;flex-direction:column;justify-content:center;min-height:115px}
+.scoreHero{background:linear-gradient(135deg,#eef1ff,#fff)}
+.scoreHero span,.scoreBox span{font-size:11px;font-weight:900;color:#727b8d;text-transform:uppercase;letter-spacing:.06em}
+.scoreHero strong{font-size:40px;line-height:1;margin:8px 0}
+.scoreBox strong{font-size:25px;margin:9px 0}
+.scoreHero small,.scoreBox small{color:#8991a1;font-size:11px}
+.aiSectionTitle{font-size:13px;font-weight:950;margin-bottom:10px}
+.aiTextBlock{line-height:1.65;white-space:pre-wrap}
+.criteriaGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.criteriaItem{padding:12px;border:1px solid #e5e8ef;border-radius:12px;background:#fbfcfe}
+.criteriaItem .ctop{display:flex;justify-content:space-between;gap:8px;font-weight:900}
+.criteriaItem .bar{height:7px;border-radius:10px;background:#edf0f5;margin:9px 0;overflow:hidden}
+.criteriaItem .bar i{display:block;height:100%;width:50%;background:linear-gradient(90deg,#7b83f6,#4cc7a0);border-radius:10px}
+.criteriaItem p{font-size:12px;line-height:1.5;color:#687184;margin:0}
+.feedbackList{margin:0;padding-left:19px;line-height:1.65}
+.corrections{display:grid;gap:9px}
+.correctionRow{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;border-radius:11px;background:#fafbfe;border:1px solid #e6e9f0}
+.correctionRow .wrong{color:#b34c4c}.correctionRow .right{color:#16834b;font-weight:800}
+.answerCard{min-height:220px}
+.answerHeader{display:flex;justify-content:space-between;align-items:center;font-weight:950;font-size:12px;letter-spacing:.05em}
+.levelPill{font-size:10px;padding:5px 8px;border-radius:999px;background:#eef1ff;color:#4e5bd9}
+.modelAnswer{font-size:16px;line-height:1.7;min-height:120px;margin:15px 0}
+.aiGoal{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.aiGoal h3{margin:5px 0}.aiGoal p{margin:0;color:#697286}
+.aiFinalActions{display:flex;gap:8px;flex-wrap:wrap}
+.aiDisclaimer{font-size:11px;color:#777f90;padding:10px 2px 0}
+@media(max-width:1050px){
+ .aiCoachWrap{height:auto;overflow:auto}
+ .aiScoreGrid{grid-template-columns:1fr 1fr}
+ .criteriaGrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+ .aiTopGrid,.aiTwoCols,.aiAnswerGrid,.aiScoreGrid{grid-template-columns:1fr}
+ .criteriaGrid{grid-template-columns:1fr}
+ .aiActionsBar,.aiGoal{align-items:stretch;flex-direction:column}
+ .aiEndpoint{justify-content:stretch}.aiEndpoint input{width:100%}
+}
 </style>
 </head>
 <body>
@@ -375,7 +437,7 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
       <div class="timerActions">
         <button id="skipBtn" class="btn ghost skipBtn" onclick="skipQuestion()">⏭ Bỏ qua câu</button>
         <button id="startBtn" class="btn primary" onclick="startQuestion()">▶ Bắt đầu chuẩn bị</button>
-        <button id="replayBtn" class="btn secondary" onclick="replay()" style="display:none">🔊 Nghe lại</button>
+        <button id="replayBtn" class="btn secondary" onclick="replay()" style="display:none">🔊 Nghe lại</button><button id="aiBtn" class="btn aiButton" onclick="openAICoach()" style="display:none">🤖 AI Coach</button>
         <button id="redoBtn" class="btn ghost" onclick="redo()" style="display:none">🔄 Ghi âm lại</button>
         <button id="nextBtn" class="btn primary nextBig" onclick="nextQuestion()" style="display:none">CÂU TIẾP THEO →</button>
       </div>
@@ -384,6 +446,120 @@ h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 7px}h3{margin:0 0 6px}
     </aside>
   </div>
 </div></div></div></div></section>
+
+
+<section id="aiCoach" class="screen">
+<div class="shell"><div class="panel">
+<button class="back" onclick="backFromAI()">← Quay lại câu hỏi</button>
+<div class="aiCoachWrap">
+  <div class="aiHero">
+    <div>
+      <div class="kicker">AI COACH • TOEIC SPEAKING</div>
+      <h2>Phân tích & nâng cấp câu trả lời</h2>
+      <p class="sub">AI sẽ chuyển giọng nói thành transcript, đánh giá theo dạng câu TOEIC và benchmark CEFR A1–C2, sau đó đề xuất câu trả lời tốt hơn.</p>
+    </div>
+    <div class="aiStatus" id="aiStatus">● READY</div>
+  </div>
+
+  <div class="aiTopGrid">
+    <div class="card aiQuestionCard">
+      <div class="aiCardLabel">QUESTION</div>
+      <div id="aiQuestionMeta" class="aiMeta"></div>
+      <div id="aiQuestionText" class="aiQuestionText"></div>
+      <div id="aiPicturePreview" class="aiPicturePreview" style="display:none"></div>
+    </div>
+
+    <div class="card aiRecordingCard">
+      <div class="aiCardLabel">YOUR RECORDING</div>
+      <div id="aiRecordingState" class="recordingState">Chưa có bản ghi.</div>
+      <audio id="aiCoachAudio" controls preload="metadata" style="display:none;width:100%;margin-top:14px"></audio>
+      <div class="aiMiniActions">
+        <button class="btn secondary" onclick="replayAIRecording()">🔊 Nghe lại</button>
+        <button class="btn ghost" onclick="redoFromAI()">🔄 Ghi âm lại</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="aiActionsBar">
+    <button id="aiAnalyzeBtn" class="btn primary aiAnalyzeBtn" onclick="analyzeWithAI()">🤖 AI CHẤM & SỬA</button>
+    <div class="aiEndpoint">
+      <label>Backend AI</label>
+      <input id="aiEndpoint" type="text" placeholder="/api/toeic/analyze">
+      <button class="btn ghost" onclick="saveAIEndpoint()">Lưu</button>
+    </div>
+  </div>
+
+  <div id="aiLoading" class="aiLoading" style="display:none">
+    <div class="aiSpinner"></div>
+    <div><b>AI đang phân tích…</b><span>Transcript → CEFR → TOEIC benchmark → Feedback → Better Answer</span></div>
+  </div>
+
+  <div id="aiResult" class="aiResult" style="display:none">
+    <div class="aiScoreGrid">
+      <div class="scoreHero card"><span>CEFR</span><strong id="aiCEFR">—</strong><small id="aiCEFRDesc">—</small></div>
+      <div class="scoreBox card"><span>TOEIC Speaking</span><strong id="aiToeic">—</strong><small>benchmark tham khảo</small></div>
+      <div class="scoreBox card"><span>IELTS Speaking</span><strong id="aiIelts">—</strong><small>benchmark tham khảo</small></div>
+      <div class="scoreBox card"><span>Ước lượng tổng</span><strong id="aiOverall">—</strong><small>/ 100</small></div>
+    </div>
+
+    <div class="aiTwoCols">
+      <div class="card">
+        <div class="aiSectionTitle">📝 Transcript</div>
+        <div id="aiTranscript" class="aiTextBlock"></div>
+      </div>
+      <div class="card">
+        <div class="aiSectionTitle">🎯 Nhận xét nhanh</div>
+        <div id="aiSummary" class="aiTextBlock"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="aiSectionTitle">📊 6 tiêu chí đánh giá</div>
+      <div id="aiCriteria" class="criteriaGrid"></div>
+    </div>
+
+    <div class="aiTwoCols">
+      <div class="card">
+        <div class="aiSectionTitle">✅ Điểm mạnh</div>
+        <ul id="aiStrengths" class="feedbackList"></ul>
+      </div>
+      <div class="card">
+        <div class="aiSectionTitle">🔧 Cần cải thiện</div>
+        <ul id="aiWeaknesses" class="feedbackList"></ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="aiSectionTitle">✏️ Sửa lỗi quan trọng</div>
+      <div id="aiCorrections" class="corrections"></div>
+    </div>
+
+    <div class="aiAnswerGrid">
+      <div class="card answerCard safe">
+        <div class="answerHeader"><span>🛡️ TOEIC SAFE ANSWER</span><span class="levelPill" id="safeLevel">TARGET</span></div>
+        <div id="aiSafeAnswer" class="modelAnswer"></div>
+        <button class="btn secondary" onclick="speakAIAnswer('safe')">🔊 Nghe câu mẫu</button>
+      </div>
+      <div class="card answerCard advanced">
+        <div class="answerHeader"><span>🚀 ADVANCED ANSWER</span><span class="levelPill" id="advancedLevel">TARGET</span></div>
+        <div id="aiAdvancedAnswer" class="modelAnswer"></div>
+        <button class="btn secondary" onclick="speakAIAnswer('advanced')">🔊 Nghe câu mẫu</button>
+      </div>
+    </div>
+
+    <div class="aiGoal card">
+      <div><span class="aiCardLabel">NEXT TARGET</span><h3 id="aiTarget">—</h3><p id="aiTargetPlan">—</p></div>
+      <div class="aiFinalActions">
+        <button class="btn ghost" onclick="redoFromAI()">🎙️ Ghi âm lại</button>
+        <button class="btn primary" onclick="nextFromAI()">➡️ Câu tiếp theo</button>
+      </div>
+    </div>
+
+    <div class="aiDisclaimer">⚠️ Điểm IELTS/TOEIC trong AI Coach là <b>benchmark luyện tập tham khảo</b> theo bộ tiêu chuẩn đã cấu hình, không phải bảng quy đổi chính thức 1:1 giữa các kỳ thi.</div>
+  </div>
+</div>
+</div></div>
+</section>
 
 <section id="done" class="screen"><div class="shell"><div class="panel"><div class="content done">
 <div class="doneEmoji">🎉</div><div class="kicker">GREAT JOB</div><h2>HOÀN THÀNH ĐỀ</h2><p class="sub">Bạn đã hoàn thành toàn bộ câu hỏi của Mock Test này.</p>
@@ -503,6 +679,16 @@ const partInfo=[
 ];
 const topicIcons=["💼","🏢","👥","🛍️","✈️","🍽️","💻","🎓","🎵","🏠","❤️","🎉","📞","🌱","💰"];
 let currentPart=1,currentTest=null,currentQuestions=[],currentQ=0,phaseTimer=null,recorder=null,audioUrl=null;
+let recordedBlob=null,recordedUrl=null,recordedMimeType="",recordedQuestionKey="",recordingFinalizing=false;
+let lastAIResult=null;
+const AI_BENCHMARKS={
+  A1:{ielts:"2.0–3.0",toeic:"80–100",desc:"Ngôn ngữ rất cơ bản; câu ngắn; còn nhiều ngập ngừng nhưng ý chính có thể hiểu."},
+  A2:{ielts:"3.0–4.0",toeic:"100–120",desc:"Giao tiếp quen thuộc; mô tả và trải nghiệm đơn giản; lỗi vẫn còn nhưng thông điệp khá rõ."},
+  B1:{ielts:"4.0–5.0",toeic:"120–150",desc:"Có thể giải thích ý kiến, đưa lý do/ví dụ; sử dụng câu đơn và câu phức ở mức phù hợp."},
+  B2:{ielts:"5.5–6.5",toeic:"160–180",desc:"Nói khá lưu loát; vocabulary phong phú hơn; dùng được cấu trúc phức tạp và bảo vệ quan điểm."},
+  C1:{ielts:"7.0–8.0",toeic:"190–200",desc:"Lưu loát, linh hoạt, chính xác; kiểm soát tốt cấu trúc phức tạp và collocations."},
+  C2:{ielts:"8.5–9.0",toeic:"N/A",desc:"Gần như hoàn toàn tự nhiên, chính xác và tinh tế; kiểm soát ngôn ngữ ở mức rất cao."}
+};
 let resourceType="",topicIndex=0,resourceItems=[],listPageIndex=0,flashItems=[],flashIndex=0;
 
 function show(id){clearTimer();document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id)?.classList.add("active");}
@@ -524,6 +710,7 @@ function openTest(id){
 }
 function renderQuestion(){
  const q=currentQuestions[currentQ];if(!q)return;
+ clearRecordedAudio();
  const oldAudio=document.getElementById("answerAudio"); if(oldAudio){oldAudio.pause();oldAudio.removeAttribute("src");oldAudio.load();oldAudio.style.display="none"}
  document.querySelector(".qcard").classList.toggle("q2mode", q.q===2);
  document.getElementById("practiceBadge").textContent=`MOCK TEST ${String(currentTest.id).padStart(2,"0")} • Q${q.q}`;
@@ -615,104 +802,163 @@ function countdown(sec,label,done){
  },1000);
 }
 async function beginRecording(sec){
- recordStartSound();
- const c=document.getElementById("clock");
- c.classList.add("record");
- document.getElementById("phase").textContent="● RECORDING"; updateProcessSteps("recording");
- document.getElementById("recordingHint").textContent="🎙️ Đang mở microphone…";
- try{
-  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    throw new Error("MIC_UNAVAILABLE");
+  clearTimer();
+  clearRecordedAudio();
+  recordingFinalizing=false;
+  recordStartSound();
+  const c=document.getElementById("clock");
+  c.classList.add("record");
+  document.getElementById("phase").textContent="● RECORDING";
+  updateProcessSteps("recording");
+  document.getElementById("recordingHint").textContent="🎙️ Đang mở microphone…";
+
+  try{
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error("MIC_UNAVAILABLE");
+    const stream=await navigator.mediaDevices.getUserMedia({
+      audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}
+    });
+    const chunks=[];
+    const options={};
+    if(window.MediaRecorder && MediaRecorder.isTypeSupported){
+      if(MediaRecorder.isTypeSupported("audio/webm;codecs=opus")) options.mimeType="audio/webm;codecs=opus";
+      else if(MediaRecorder.isTypeSupported("audio/webm")) options.mimeType="audio/webm";
+      else if(MediaRecorder.isTypeSupported("audio/mp4")) options.mimeType="audio/mp4";
+    }
+    recorder=new MediaRecorder(stream,options);
+    const activeRecorder=recorder;
+
+    activeRecorder.ondataavailable=e=>{
+      if(e.data && e.data.size>0) chunks.push(e.data);
+    };
+    activeRecorder.onerror=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      if(recorder===activeRecorder) recorder=null;
+      recordingFinalizing=false;
+      finishRecording(false);
+    };
+    activeRecorder.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      if(recorder===activeRecorder) recorder=null;
+
+      if(chunks.length){
+        recordedMimeType=activeRecorder.mimeType || chunks[0].type || "audio/webm";
+        recordedBlob=new Blob(chunks,{type:recordedMimeType});
+        recordedUrl=URL.createObjectURL(recordedBlob);
+        recordedQuestionKey=`${currentTest?.id || "x"}-${currentQuestions[currentQ]?.q || currentQ}`;
+        audioUrl=recordedUrl;
+
+        const audio=document.getElementById("answerAudio");
+        if(audio){
+          audio.pause();
+          audio.src=recordedUrl;
+          audio.load();
+          audio.style.display="block";
+          audio.onloadedmetadata=()=>{};
+        }
+        finishRecording(true);
+      }else{
+        finishRecording(false);
+      }
+      recordingFinalizing=false;
+    };
+
+    activeRecorder.start(100);
+    document.getElementById("recordingHint").textContent="🔴 Đang ghi âm — hãy trả lời tự nhiên và rõ ràng.";
+  }catch(e){
+    recorder=null;
+    document.getElementById("recordingHint").innerHTML="⚠️ Không thể mở microphone. Hãy cho phép Microphone và chạy trang bằng <b>localhost/HTTPS</b> rồi thử lại.";
+    finishRecording(false);
+    return;
   }
-  if(audioUrl){URL.revokeObjectURL(audioUrl);audioUrl=null}
-  const oldAudio=document.getElementById("answerAudio");
-  if(oldAudio){oldAudio.pause();oldAudio.removeAttribute("src");oldAudio.load();oldAudio.style.display="none"}
-  const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
-  const chunks=[];
-  const options={};
-  if(MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported("audio/webm;codecs=opus")) options.mimeType="audio/webm;codecs=opus";
-  else if(MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported("audio/webm")) options.mimeType="audio/webm";
-  recorder=new MediaRecorder(stream,options);
-  const activeRecorder=recorder;
-  activeRecorder.ondataavailable=e=>{if(e.data && e.data.size>0)chunks.push(e.data)};
-  activeRecorder.onerror=()=>{stream.getTracks().forEach(t=>t.stop());finishRecording(false)};
-  activeRecorder.onstop=()=>{
-    stream.getTracks().forEach(t=>t.stop());
-    if(chunks.length){
-      const blob=new Blob(chunks,{type:activeRecorder.mimeType || "audio/webm"});
-      audioUrl=URL.createObjectURL(blob);
-      const audio=document.getElementById("answerAudio");
-      audio.src=audioUrl;
-      audio.style.display="block";
-      audio.load();
-      finishRecording(true);
-    }else finishRecording(false);
-    if(recorder===activeRecorder) recorder=null;
-  };
-  activeRecorder.start(100);
-  document.getElementById("recordingHint").textContent="🔴 Đang ghi âm — hãy trả lời tự nhiên và rõ ràng.";
- }catch(e){
-  recorder=null;
-  document.getElementById("recordingHint").innerHTML="⚠️ Không thể mở microphone. Hãy cho phép Microphone và chạy trang bằng <b>localhost/HTTPS</b> rồi thử lại.";
-  finishRecording(false);
-  return;
- }
- let n=sec;
- document.getElementById("clock").querySelector("span").textContent=n;
- phaseTimer=setInterval(()=>{
-   n--;
-   document.getElementById("clock").querySelector("span").textContent=n;
-   if(n<=5 && n>0) tone(n===1?920:720,.11,"triangle",.038);
-   if(n<=0){
-     clearTimer();
-     countdownSound(0);
-     document.getElementById("recordingHint").textContent="Đang hoàn tất bản ghi…";
-     if(recorder && recorder.state!=="inactive") recorder.stop();
-     else finishRecording(false);
-   }
- },1000);
+
+  let n=Number(sec)||0;
+  document.getElementById("clock").querySelector("span").textContent=n;
+  phaseTimer=setInterval(()=>{
+    n--;
+    document.getElementById("clock").querySelector("span").textContent=Math.max(n,0);
+    if(n<=5 && n>0){
+      tone(n===1?920:720,.11,"triangle",.038);
+      const circle=document.querySelector(".timerCircle");
+      if(circle){circle.classList.remove("timerPulse");void circle.offsetWidth;circle.classList.add("timerPulse");}
+    }
+    if(n<=0){
+      clearTimer();
+      countdownSound(0);
+      document.getElementById("recordingHint").textContent="Đang hoàn tất bản ghi…";
+      if(recorder && recorder.state!=="inactive"){
+        recordingFinalizing=true;
+        try{recorder.stop()}catch(e){recordingFinalizing=false;finishRecording(false)}
+      }else{
+        finishRecording(false);
+      }
+    }
+  },1000);
 }
+
 function finishRecording(hasAudio=true){
- successSound();
- document.getElementById("phase").textContent="REVIEW YOUR ANSWER";
- document.getElementById("recordingHint").textContent=hasAudio?"✅ Bản ghi đã sẵn sàng. Bạn có thể nghe lại hoặc ghi âm lại.":"⚠️ Chưa có bản ghi. Kiểm tra quyền microphone rồi thử lại.";
- document.getElementById("clock").classList.remove("record");
- const audio=document.getElementById("answerAudio");
- if(hasAudio && audio && audioUrl){audio.src=audioUrl;audio.style.display="block";audio.load()}
- else if(audio){audio.pause();audio.removeAttribute("src");audio.load();audio.style.display="none"}
- document.getElementById("replayBtn").style.display=hasAudio?"inline-flex":"none";
- document.getElementById("redoBtn").style.display="inline-flex";
- document.getElementById("nextBtn").style.display="inline-flex";
- document.getElementById("skipBtn").style.display="inline-flex";
- document.getElementById("nextStatus").textContent=currentQ<currentQuestions.length-1?`Hoàn thành câu ${currentQ+1} • Có thể nghe lại hoặc sang câu ${currentQ+2}`:"Hoàn thành câu cuối cùng";
- document.getElementById("nextBtn").textContent=currentQ<currentQuestions.length-1?"CÂU TIẾP THEO →":"HOÀN THÀNH ✓";
- updateProcessSteps("review");
+  clearTimer();
+  if(hasAudio) successSound(); else warningSound();
+  document.getElementById("phase").textContent=hasAudio?"REVIEW YOUR ANSWER":"RECORDING ERROR";
+  document.getElementById("recordingHint").textContent=hasAudio
+    ?"✅ Bản ghi đã sẵn sàng. Bạn có thể nghe lại hoặc dùng AI Coach."
+    :"⚠️ Chưa có bản ghi. Kiểm tra quyền microphone rồi thử lại.";
+  document.getElementById("clock").classList.remove("record");
+
+  const audio=document.getElementById("answerAudio");
+  if(hasAudio && audio && recordedUrl){
+    audio.src=recordedUrl;
+    audio.style.display="block";
+    audio.load();
+  }else if(audio){
+    audio.pause();audio.removeAttribute("src");audio.load();audio.style.display="none";
+  }
+
+  document.getElementById("replayBtn").style.display=hasAudio?"inline-flex":"none";
+  document.getElementById("redoBtn").style.display="inline-flex";
+  document.getElementById("nextBtn").style.display="inline-flex";
+  document.getElementById("skipBtn").style.display="inline-flex";
+  document.getElementById("aiBtn").style.display=hasAudio?"inline-flex":"none";
+  document.getElementById("nextStatus").textContent=currentQ<currentQuestions.length-1
+    ?`Hoàn thành câu ${currentQ+1} • Nghe lại, AI Coach hoặc sang câu ${currentQ+2}`
+    :"Hoàn thành câu cuối cùng";
+  document.getElementById("nextBtn").textContent=currentQ<currentQuestions.length-1?"CÂU TIẾP THEO →":"HOÀN THÀNH ✓";
+  updateProcessSteps("review");
 }
+
 function replay(){
- const audio=document.getElementById("answerAudio");
- if(audio && audio.src){audio.currentTime=0;audio.play().catch(()=>toast("Hãy bấm nút phát trên trình phát âm thanh."));}
- else toast("Chưa có bản ghi. Hãy ghi âm trước.");
+  const audio=document.getElementById("answerAudio");
+  if(audio && recordedUrl){
+    audio.src=recordedUrl;
+    audio.style.display="block";
+    audio.currentTime=0;
+    audio.play().catch(()=>toast("Trình duyệt đã chặn tự phát. Hãy bấm nút phát."));
+  }else toast("Chưa có bản ghi. Hãy ghi âm trước.");
 }
 function replayLast(){replay()}
-function redo(){
- stopActiveRecording();
- renderQuestion();
+
+function clearRecordedAudio(){
+  const audio=document.getElementById("answerAudio");
+  if(audio){audio.pause();audio.removeAttribute("src");audio.load();audio.style.display="none"}
+  if(recordedUrl){try{URL.revokeObjectURL(recordedUrl)}catch(e){}}
+  recordedBlob=null;recordedUrl=null;recordedMimeType="";recordedQuestionKey="";audioUrl=null;recordingFinalizing=false;
+  const aiAudio=document.getElementById("aiCoachAudio");
+  if(aiAudio){aiAudio.pause();aiAudio.removeAttribute("src");aiAudio.load();aiAudio.style.display="none"}
 }
-function stopActiveRecording(){
- clearTimer();
- if(recorder && recorder.state!=="inactive"){
-   try{recorder.stop()}catch(e){}
- }
- recorder=null;
- const audio=document.getElementById("answerAudio");
- if(audio){audio.pause();audio.removeAttribute("src");audio.load();audio.style.display="none"}
- if(audioUrl){URL.revokeObjectURL(audioUrl);audioUrl=null}
+
+function stopActiveRecording(preserveRecording=false){
+  clearTimer();
+  if(recorder && recorder.state!=="inactive"){
+    try{recorder.stop()}catch(e){}
+  }
+  recorder=null;
+  if(!preserveRecording) clearRecordedAudio();
 }
+
 function updateProcessSteps(stage){
- const steps=document.querySelectorAll(".processSteps .step");
- const map={preparation:0,recording:1,review:2,next:3};
- const active=map[stage] ?? 0;
- steps.forEach((el,i)=>el.classList.toggle("active",i===active));
+  const steps=document.querySelectorAll(".processSteps .step");
+  const map={preparation:0,recording:1,review:2,next:3};
+  const active=map[stage] ?? 0;
+  steps.forEach((el,i)=>el.classList.toggle("active",i===active));
 }
 function skipQuestion(){
  stopActiveRecording();
@@ -729,6 +975,171 @@ function nextQuestion(){
 }
 function restartTest(){stopActiveRecording();currentQ=0;renderQuestion();show("practice")}
 function exitPractice(){stopActiveRecording();show("tests")}
+
+
+function backFromAI(){ show("practice"); }
+function saveAIEndpoint(){
+  const value=(document.getElementById("aiEndpoint")?.value||"").trim();
+  if(value)localStorage.setItem("henryToeicAIEndpoint",value);
+  toast(value?"Đã lưu địa chỉ AI backend.":"Hãy nhập địa chỉ backend.");
+}
+function getAIEndpoint(){
+  return (localStorage.getItem("henryToeicAIEndpoint") || "/api/toeic/analyze").trim();
+}
+
+function openAICoach(){
+  if(!recordedBlob || !recordedUrl){
+    toast("Chưa có bản ghi để AI phân tích.");
+    return;
+  }
+  const q=currentQuestions[currentQ];
+  document.getElementById("aiEndpoint").value=getAIEndpoint();
+  document.getElementById("aiQuestionMeta").textContent=`Mock Test ${String(currentTest.id).padStart(2,"0")} • Q${q.q} • ${partInfo.find(p=>p.qs.includes(q.q))?.name || "Speaking"}`;
+  document.getElementById("aiQuestionText").textContent=q.text || "";
+  const prev=document.getElementById("aiPicturePreview");
+  if(q.q===2 && PICTURE_ASSETS[currentTest.id-1]){
+    prev.innerHTML=`<img src="${PICTURE_ASSETS[currentTest.id-1]}" alt="TOEIC picture">`;
+    prev.style.display="block";
+  }else{
+    prev.innerHTML="";prev.style.display="none";
+  }
+  const aiAudio=document.getElementById("aiCoachAudio");
+  aiAudio.src=recordedUrl;aiAudio.style.display="block";aiAudio.load();
+  document.getElementById("aiRecordingState").textContent=`✅ Bản ghi đã sẵn sàng • ${(recordedBlob.size/1024).toFixed(0)} KB`;
+  document.getElementById("aiResult").style.display="none";
+  document.getElementById("aiLoading").style.display="none";
+  document.getElementById("aiStatus").textContent="● READY";
+  show("aiCoach");
+}
+function replayAIRecording(){
+  const a=document.getElementById("aiCoachAudio");
+  if(a && recordedUrl){a.src=recordedUrl;a.style.display="block";a.currentTime=0;a.play().catch(()=>toast("Hãy bấm Play trên trình phát."))}
+}
+function redoFromAI(){ show("practice"); setTimeout(()=>redo(),50); }
+function nextFromAI(){ show("practice"); setTimeout(()=>nextQuestion(),50); }
+
+function questionTypeForAI(q){
+  if(q===1) return "read_aloud";
+  if(q===2) return "describe_picture";
+  if(q>=3 && q<=5) return "respond_questions";
+  if(q>=6 && q<=8) return "information_provided";
+  if(q===9) return "propose_solution";
+  return "express_opinion";
+}
+function benchmarkForCEFR(level){
+  const key=String(level||"B1").toUpperCase().replace(/\s/g,"");
+  return AI_BENCHMARKS[key] || AI_BENCHMARKS.B1;
+}
+function escapeText(v){return v==null?"":String(v)}
+function listToHtml(items){
+  const arr=Array.isArray(items)?items:[];
+  return arr.length?arr.map(x=>`<li>${escapeText(x)}</li>`).join(""):"<li>Chưa có nhận xét.</li>";
+}
+function renderCriteria(criteria){
+  const box=document.getElementById("aiCriteria");
+  const names=["Vocabulary","Grammar Accuracy","Grammar Range","Fluency & Coherence","Pronunciation","Organization & Task Achievement"];
+  box.innerHTML=names.map(name=>{
+    const key=name.toLowerCase().replace(/[^a-z]+(.)/g,(m,c)=>c.toUpperCase());
+    const item=criteria?.[name] || criteria?.[key] || {};
+    const score=Number(item.score ?? item.band ?? 0);
+    const pct=Math.max(0,Math.min(100,score*10));
+    return `<div class="criteriaItem"><div class="ctop"><span>${name}</span><b>${escapeText(item.level||item.cefr||"—")} ${item.score!=null?`• ${escapeText(item.score)}/10`:""}</b></div><div class="bar"><i style="width:${pct}%"></i></div><p>${escapeText(item.feedback||item.comment||"Chưa có nhận xét.")}</p></div>`;
+  }).join("");
+}
+function renderCorrections(corrections){
+  const box=document.getElementById("aiCorrections");
+  const arr=Array.isArray(corrections)?corrections:[];
+  box.innerHTML=arr.length?arr.map(c=>`<div class="correctionRow"><div class="wrong"><b>❌</b> ${escapeText(c.original||c.wrong||"")}</div><div class="right"><b>✅</b> ${escapeText(c.corrected||c.right||"")}</div></div>`).join(""):"<div class='correctionRow'><div>Không có lỗi nổi bật.</div><div class='right'>Tiếp tục duy trì.</div></div>";
+}
+
+function renderAIResult(data){
+  lastAIResult=data||{};
+  const level=String(data.cefr||data.CEFR||"B1").toUpperCase();
+  const bm=benchmarkForCEFR(level);
+  document.getElementById("aiCEFR").textContent=level;
+  document.getElementById("aiCEFRDesc").textContent=data.cefr_description||bm.desc;
+  document.getElementById("aiToeic").textContent=data.toeic_speaking||data.toeicSpeaking||bm.toeic;
+  document.getElementById("aiIelts").textContent=data.ielts_speaking||data.ieltsSpeaking||bm.ielts;
+  document.getElementById("aiOverall").textContent=data.overall_score!=null?data.overall_score:"—";
+  document.getElementById("aiTranscript").textContent=escapeText(data.transcript||"Không có transcript.");
+  document.getElementById("aiSummary").textContent=escapeText(data.summary||data.overall_feedback||"Chưa có nhận xét.");
+  renderCriteria(data.criteria||data.scores||{});
+  document.getElementById("aiStrengths").innerHTML=listToHtml(data.strengths);
+  document.getElementById("aiWeaknesses").innerHTML=listToHtml(data.weaknesses);
+  renderCorrections(data.corrections);
+  document.getElementById("aiSafeAnswer").textContent=escapeText(data.safe_answer||data.toeic_safe_answer||"");
+  document.getElementById("aiAdvancedAnswer").textContent=escapeText(data.advanced_answer||"");
+  document.getElementById("safeLevel").textContent=data.safe_target_cefr?`TARGET ${data.safe_target_cefr}`:"TARGET";
+  document.getElementById("advancedLevel").textContent=data.advanced_target_cefr?`TARGET ${data.advanced_target_cefr}`:"TARGET";
+  document.getElementById("aiTarget").textContent=escapeText(data.next_target||`Tiến từ ${level} lên ${level==="B1"?"B2":"mức tiếp theo"}`);
+  document.getElementById("aiTargetPlan").textContent=escapeText(data.improvement_plan||"Tập trung vào grammar accuracy, fluency và phát triển ý.");
+  document.getElementById("aiStatus").textContent="● ANALYZED";
+  document.getElementById("aiResult").style.display="block";
+}
+function speakAIAnswer(kind){
+  const text=kind==="safe"?document.getElementById("aiSafeAnswer").textContent:document.getElementById("aiAdvancedAnswer").textContent;
+  if(!text){toast("Chưa có câu mẫu.");return}
+  if(!("speechSynthesis" in window)){toast("Trình duyệt không hỗ trợ đọc văn bản.");return}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";u.rate=.88;u.pitch=1;
+  speechSynthesis.speak(u);
+}
+
+async function analyzeWithAI(){
+  if(!recordedBlob){toast("Chưa có bản ghi.");return}
+  const endpoint=getAIEndpoint();
+  const q=currentQuestions[currentQ];
+  const btn=document.getElementById("aiAnalyzeBtn");
+  const loading=document.getElementById("aiLoading");
+  btn.disabled=true;loading.style.display="flex";
+  document.getElementById("aiResult").style.display="none";
+  document.getElementById("aiStatus").textContent="● ANALYZING";
+
+  const fd=new FormData();
+  fd.append("audio",recordedBlob,`toeic-test-${currentTest.id}-q${q.q}.${recordedMimeType.includes("mp4")?"mp4":"webm"}`);
+  fd.append("question",q.text||"");
+  fd.append("question_number",String(q.q));
+  fd.append("question_type",questionTypeForAI(q.q));
+  fd.append("test_id",String(currentTest.id));
+  fd.append("topic",currentTest.topic||"");
+  if(q.q===2) fd.append("picture_index",String(currentTest.id-1));
+  fd.append("benchmark",JSON.stringify(AI_BENCHMARKS));
+  fd.append("rubric",JSON.stringify({
+    speaking:["Vocabulary","Grammar Accuracy","Grammar Range","Fluency & Coherence","Pronunciation","Organization & Task Achievement"],
+    cefr:["A1","A2","B1","B2","C1","C2"],
+    note:"IELTS/TOEIC values are practice benchmarks, not official 1:1 conversion."
+  }));
+
+  try{
+    const res=await fetch(endpoint,{method:"POST",body:fd});
+    if(!res.ok) throw new Error(`HTTP_${res.status}`);
+    const data=await res.json();
+    renderAIResult(data);
+  }catch(err){
+    document.getElementById("aiStatus").textContent="● BACKEND ERROR";
+    toast("Không kết nối được AI backend. Kiểm tra URL backend và máy chủ.");
+    document.getElementById("aiResult").style.display="block";
+    renderAIResult({
+      cefr:"B1",
+      cefr_description:"Demo UI — chưa nhận được kết quả từ backend.",
+      toeic_speaking:"120–150",
+      ielts_speaking:"4.0–5.0",
+      overall_score:"—",
+      transcript:"Chưa có transcript vì AI backend chưa phản hồi.",
+      summary:"HTML đã sẵn sàng để gửi audio Blob tới backend. Hãy chạy backend và đặt endpoint ở ô “Backend AI”.",
+      strengths:["Recording đã được lưu thành Blob.","Giao diện AI Coach và rubric đã sẵn sàng."],
+      weaknesses:["Chưa thể chấm nội dung khi backend chưa hoạt động."],
+      corrections:[],
+      safe_answer:"Backend chưa trả về câu mẫu.",
+      advanced_answer:"Backend chưa trả về câu mẫu.",
+      next_target:"Kết nối AI backend",
+      improvement_plan:"Sau khi backend hoạt động, AI sẽ transcript → chấm 6 tiêu chí → CEFR → benchmark → sửa lỗi → tạo câu mẫu."
+    });
+  }finally{
+    btn.disabled=false;loading.style.display="none";
+  }
+}
 
 function resourceSource(type){
  if(type==="words")return DATA.words;
