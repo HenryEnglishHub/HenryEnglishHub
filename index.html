@@ -127,6 +127,12 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 .practiceWords{display:flex;gap:7px;flex-wrap:wrap}
 .wordChip{border:1px solid #dfe5f2;background:#f8f9fc;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;cursor:pointer}
 .wordChip:hover{background:#eef1ff}
+
+.taskGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.taskGrid>div{border:1px solid var(--line);background:#f8f9fc;border-radius:12px;padding:9px;text-align:center}
+.taskGrid small{display:block;color:#8993a8;font-size:9px;font-weight:900}
+.taskGrid b{display:block;margin-top:4px;font-size:14px}
+@media(max-width:800px){.taskGrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -219,6 +225,15 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
           <h3>⏱️ TIME-FIT COACH</h3>
           <div id="timeFitText" class="wideText">—</div>
         </div>
+        <div class="wideBlock taskAchievement">
+          <h3>🎯 TASK ACHIEVEMENT</h3>
+          <div class="taskGrid">
+            <div><small>MỨC ĐỘ</small><b id="taskLevel">—</b></div>
+            <div><small>TRẢ LỜI ĐÚNG TRỌNG TÂM</small><b id="taskDirect">—</b></div>
+            <div><small>ĐỦ Ý / CHI TIẾT</small><b id="taskDetail">—</b></div>
+          </div>
+          <div id="taskAchievementText" class="wideText" style="margin-top:9px">—</div>
+        </div>
         <div class="wideBlock emphasis">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
             <h3>⭐ HIGH-SCORE SAMPLE ANSWER</h3>
@@ -226,13 +241,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
           </div>
           <div id="wideSuggestion" class="wideText">Gợi ý sẽ tự động xuất hiện theo câu hỏi.</div>
         </div>
-        <div class="wideBlock">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-<h3>🚀 CÂU TRẢ LỜI NÂNG CẤP</h3>
-<button class="btn ghost" style="padding:6px 9px;font-size:11px" onclick="speakCoachText('wideAdvanced')">🔊 Nghe</button>
-</div>
-          <div id="wideAdvanced" class="wideText">Phiên bản nâng cấp sẽ xuất hiện sau khi FREE COACH phân tích.</div>
-        </div>
+        
         <div class="wideBlock">
           <h3>🔎 NHẬN XÉT</h3>
           <div id="wideNotes" class="wideText">Chưa có nhận xét.</div>
@@ -602,6 +611,53 @@ function upgradedStudentAnswer(q,transcript){
  return `${fixed} In addition, this can provide a useful long-term benefit. For example, it can save time, improve efficiency, and make the situation easier to manage.`;
 }
 
+
+function evaluateTaskAchievement(q, transcript){
+ const t=(transcript||"").trim(), low=t.toLowerCase(), wc=wordCount(t);
+ if(!t)return {level:"CHƯA ĐỦ DỮ LIỆU",direct:"—",detail:"—",text:"Không nhận được transcript nên FREE COACH chưa thể đánh giá mức độ hoàn thành nhiệm vụ."};
+
+ let direct=true, detail=true, notes=[];
+ if(q.q===1){
+   direct=wc>=8; detail=wc>=18;
+   notes.push("Yêu cầu chính: đọc đúng nội dung, hoàn thành phần đọc và giữ nhịp nói rõ ràng.");
+ }else if(q.q===2){
+   direct=/\b(picture|there is|there are|see|foreground|background|left|right|standing|sitting|wearing)\b/i.test(t);
+   detail=wc>=35;
+   notes.push("Yêu cầu chính: mô tả những gì nhìn thấy và bổ sung vị trí, hành động hoặc chi tiết.");
+ }else if(q.q===3||q.q===4){
+   direct=wc>=4; detail=wc>=10;
+   notes.push("Yêu cầu chính: trả lời trực tiếp câu hỏi và thêm ít nhất một chi tiết cụ thể.");
+ }else if(q.q===5){
+   direct=wc>=8; detail=/\b(because|reason|for example|for instance|so)\b/i.test(t)&&wc>=25;
+   notes.push("Yêu cầu chính: nêu lựa chọn/quan điểm và giải thích lý do.");
+ }else if(q.q>=6&&q.q<=7){
+   direct=/\b(at|from|until|session|class|event|course|workshop|seminar)\b/i.test(t);
+   detail=wc>=7;
+   notes.push("Yêu cầu chính: lấy đúng thông tin từ bảng và trả lời ngắn gọn, chính xác.");
+ }else if(q.q===8){
+   direct=/\b(recommend|should|would)\b/i.test(t);
+   detail=/\b(because|since|at|from)\b/i.test(t)&&wc>=20;
+   notes.push("Yêu cầu chính: đưa ra recommendation dựa trên bảng và giải thích vì sao phù hợp.");
+ }else if(q.q===9){
+   direct=/\b(recommend|suggest|should|could|solution)\b/i.test(t);
+   detail=/\b(because|so|result|help|improve|reduce|increase)\b/i.test(t)&&wc>=35;
+   notes.push("Yêu cầu chính: đề xuất giải pháp cụ thể và nêu lợi ích/kết quả của giải pháp.");
+ }else{
+   direct=/\b(agree|disagree|choose|prefer|think|believe|would)\b/i.test(t);
+   detail=/\b(because|first|second|example|reason|therefore|for instance)\b/i.test(t)&&wc>=40;
+   notes.push("Yêu cầu chính: nêu rõ lập trường/lựa chọn, lý do và ví dụ hỗ trợ.");
+ }
+
+ let level;
+ if(direct&&detail)level="HOÀN THÀNH TỐT";
+ else if(direct||detail)level="HOÀN THÀNH MỘT PHẦN";
+ else level="CẦN CẢI THIỆN";
+
+ if(!direct)notes.push("Cần trả lời trực tiếp hơn vào đúng yêu cầu của câu hỏi.");
+ if(!detail)notes.push("Cần thêm lý do, ví dụ hoặc chi tiết để phát triển câu trả lời.");
+ return {level,direct:direct?"ĐẠT":"CẦN SỬA",detail:detail?"ĐẠT":"CẦN THÊM",text:notes.join(" ")};
+}
+
 function analyzeFreeCoach(auto=false){
  if(busy)return;
  const k=key(),saved=recordings.get(k);
@@ -616,6 +672,7 @@ function analyzeFreeCoach(auto=false){
    const structure=structureChecks(q,transcript);
    const wc=wordCount(transcript), dur=saved.duration||q.response;
    const timing=timeFit(q,transcript,dur);
+   const taskAchievement=evaluateTaskAchievement(q,transcript);
    const pronWords=pronunciationCandidates(q,transcript);
    const vocab=vocabUpgrades(transcript);
    const result={
@@ -634,6 +691,7 @@ function analyzeFreeCoach(auto=false){
      suggested_vocabulary:vocab,
      pronunciation_words:pronWords,
      timing,
+     task_achievement:taskAchievement,
      disclaimer:"FREE COACH là bộ phân tích trên trình duyệt. Không chấm CEFR/TOEIC/IELTS hay phát âm như điểm thi chính thức."
    };
    results.set(k,result);renderQuick(result);renderDetail(result);
@@ -642,10 +700,13 @@ function analyzeFreeCoach(auto=false){
    if($("wideTranscript"))$("wideTranscript").textContent=result.transcript||"Không nhận được script từ trình duyệt. Bản ghi âm vẫn được giữ để nghe lại.";
    if($("wideCorrected"))$("wideCorrected").textContent=result.corrected_answer||"—";
    if($("wideSuggestion"))$("wideSuggestion").textContent=result.safe_answer||freeModelAnswer(q);
-   if($("wideAdvanced"))$("wideAdvanced").textContent=result.advanced_answer||"—";
    if($("pronunciationWords"))$("pronunciationWords").innerHTML=wordChips(result.pronunciation_words||[]);
    if($("vocabUpgrade"))$("vocabUpgrade").innerHTML=(result.suggested_vocabulary||[]).map(x=>`<span class="wordChip">${escapeHtml(x)}</span>`).join("")||"Không có đề xuất cụ thể.";
    if($("timeFitText"))$("timeFitText").textContent=result.timing?.msg||"—";
+   if($("taskLevel"))$("taskLevel").textContent=result.task_achievement?.level||"—";
+   if($("taskDirect"))$("taskDirect").textContent=result.task_achievement?.direct||"—";
+   if($("taskDetail"))$("taskDetail").textContent=result.task_achievement?.detail||"—";
+   if($("taskAchievementText"))$("taskAchievementText").textContent=result.task_achievement?.text||"—";
    if($("wideNotes")){
      const notes=[...(result.corrections||[]),...(result.structure_notes||[])];
      $("wideNotes").textContent=notes.length?notes.map((x,i)=>`${i+1}. ${x}`).join("\n"):result.summary;
