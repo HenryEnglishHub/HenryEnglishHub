@@ -2539,5 +2539,85 @@ function redo(){
 })();
 </script>
 
+
+<script>
+/* ===== HENRY ENGLISH: FORCE AUTO PREPARATION ON EVERY QUESTION ===== */
+(function () {
+  let autoPrepTicket = 0;
+
+  function forceAutoPreparation() {
+    const ticket = ++autoPrepTicket;
+
+    /* Wait until the selected question has finished rendering. */
+    setTimeout(() => {
+      if (ticket !== autoPrepTicket) return;
+      if (!document.getElementById("practice")?.classList.contains("active")) return;
+
+      try {
+        /* Cancel any countdown left by the previous question. */
+        if (typeof timer !== "undefined" && timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+
+        const q = (typeof currentQuestions !== "undefined")
+          ? currentQuestions[currentQ]
+          : null;
+        if (!q) return;
+
+        /* Never overwrite an answer that has already been recorded. */
+        const key = (typeof questionKey === "function") ? questionKey() : "";
+        if (typeof recordingStore !== "undefined" && key && recordingStore.has(key)) {
+          if (typeof setPhase === "function") setPhase("done");
+          if (typeof updatePracticeUI === "function") updatePracticeUI();
+          return;
+        }
+
+        /* Start the app's existing preparation workflow immediately.
+           startPreparation() already handles:
+           Preparation -> Recording -> finishRecording -> Auto AI. */
+        if (typeof startPreparation === "function") {
+          startPreparation();
+        } else if (typeof startTimer === "function") {
+          startTimer("prep", Number(q.prep || 0));
+        }
+      } catch (err) {
+        console.warn("Auto Preparation:", err);
+      }
+    }, 80);
+  }
+
+  /* Opening/rendering a question must always trigger preparation. */
+  const originalRenderQuestion = window.renderQuestion;
+  if (typeof originalRenderQuestion === "function") {
+    window.renderQuestion = function () {
+      const result = originalRenderQuestion.apply(this, arguments);
+      forceAutoPreparation();
+      return result;
+    };
+  }
+
+  /* Extra guard for navigation between Q3/Q4/Q5 etc. */
+  const originalGoToQuestion = window.goToQuestion;
+  if (typeof originalGoToQuestion === "function") {
+    window.goToQuestion = function () {
+      const result = originalGoToQuestion.apply(this, arguments);
+      forceAutoPreparation();
+      return result;
+    };
+  }
+
+  /* Extra guard when the Practice screen itself is opened. */
+  const originalShow = window.show;
+  if (typeof originalShow === "function") {
+    window.show = function (id) {
+      const result = originalShow.apply(this, arguments);
+      if (id === "practice") forceAutoPreparation();
+      return result;
+    };
+  }
+})();
+</script>
+
 </body>
 </html>
