@@ -123,6 +123,10 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
  .wideCoach{margin-bottom:14px}
 }
 
+
+.practiceWords{display:flex;gap:7px;flex-wrap:wrap}
+.wordChip{border:1px solid #dfe5f2;background:#f8f9fc;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;cursor:pointer}
+.wordChip:hover{background:#eef1ff}
 </style>
 </head>
 <body>
@@ -188,9 +192,9 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
  <div class="qtabs" id="qtabs"></div>
  <div class="work">
   <main class="prompt"><div class="eyebrow" id="taskName"></div><h2 id="qtext"></h2><div class="instruction" id="instruction"></div><div id="special"></div>
-    <section id="wideCoach" class="wideCoach">
+    <section id="wideCoach" class="wideCoach" style="display:none">
       <div class="wideCoachHead">
-        <div><span class="freeTag">FREE</span> <b>FREE COACH • KẾT QUẢ & GỢI Ý</b></div>
+        <div><span class="freeTag">FREE</span> <b>FREE COACH • SPEAKING REVIEW</b></div>
         <span id="wideCoachStatus">SẴN SÀNG</span>
       </div>
       <div class="wideCoachBody">
@@ -202,12 +206,31 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
           <h3>✏️ CÂU ĐÃ SỬA</h3>
           <div id="wideCorrected" class="wideText">FREE COACH sẽ hiển thị câu đã sửa ở đây.</div>
         </div>
+        <div class="wideBlock">
+          <h3>🗣️ PRONUNCIATION COACH</h3>
+          <div id="pronunciationWords" class="practiceWords">Sau khi ghi âm, các từ nên luyện sẽ xuất hiện ở đây.</div>
+          <div class="wideText" style="margin-top:7px;font-size:11px">Bấm vào từ để nghe cách đọc mẫu. FREE COACH không tạo điểm phát âm giả.</div>
+        </div>
+        <div class="wideBlock">
+          <h3>📚 VOCABULARY UPGRADE</h3>
+          <div id="vocabUpgrade" class="practiceWords">—</div>
+        </div>
+        <div class="wideBlock">
+          <h3>⏱️ TIME-FIT COACH</h3>
+          <div id="timeFitText" class="wideText">—</div>
+        </div>
         <div class="wideBlock emphasis">
-          <h3>⭐ GỢI Ý CÂU TRẢ LỜI</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+            <h3>⭐ HIGH-SCORE SAMPLE ANSWER</h3>
+            <button class="btn ghost" style="padding:6px 9px;font-size:11px" onclick="speakCoachText('wideSuggestion')">🔊 Nghe mẫu</button>
+          </div>
           <div id="wideSuggestion" class="wideText">Gợi ý sẽ tự động xuất hiện theo câu hỏi.</div>
         </div>
         <div class="wideBlock">
-          <h3>🚀 CÂU TRẢ LỜI NÂNG CẤP</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+<h3>🚀 CÂU TRẢ LỜI NÂNG CẤP</h3>
+<button class="btn ghost" style="padding:6px 9px;font-size:11px" onclick="speakCoachText('wideAdvanced')">🔊 Nghe</button>
+</div>
           <div id="wideAdvanced" class="wideText">Phiên bản nâng cấp sẽ xuất hiện sau khi FREE COACH phân tích.</div>
         </div>
         <div class="wideBlock">
@@ -364,8 +387,7 @@ async function beginRecording(sec){
          }
          liveTranscript=(finalTranscript+" "+interim).trim();
          $("recHint").textContent=liveTranscript?`Đang nghe: ${liveTranscript.slice(-95)}`:"Đang nghe giọng nói…";
-         if($("wideTranscript"))$("wideTranscript").textContent=liveTranscript||"Đang nghe giọng nói…";
-         if($("wideCoachStatus"))$("wideCoachStatus").textContent="ĐANG NHẬN SCRIPT";
+
        };
        speechRec.onerror=e=>console.warn("Speech recognition:",e.error);
        speechRec.start();
@@ -476,16 +498,8 @@ function freeModelAnswer(q){
  return "I would answer the question directly, give a clear reason, add a specific example, and finish with a short conclusion.";
 }
 function showAutomaticSuggestion(){
- if(!questions?.length)return;
- const suggestion=freeModelAnswer(questions[qi]);
- const box=$("coachSuggestionText");
- if(box)box.textContent=suggestion;
- if($("wideSuggestion"))$("wideSuggestion").textContent=suggestion;
- if($("wideTranscript"))$("wideTranscript").textContent="Sau khi ghi âm, script của học viên sẽ xuất hiện đầy đủ tại đây.";
- if($("wideCorrected"))$("wideCorrected").textContent="FREE COACH sẽ hiển thị câu đã sửa ở đây.";
- if($("wideAdvanced"))$("wideAdvanced").textContent="Phiên bản nâng cấp sẽ xuất hiện sau khi FREE COACH phân tích.";
- if($("wideNotes"))$("wideNotes").textContent="Gợi ý mẫu đã sẵn sàng. Hãy ghi âm để nhận script và nhận xét.";
- if($("wideCoachStatus"))$("wideCoachStatus").textContent="GỢI Ý SẴN SÀNG";
+ if($("wideCoach"))$("wideCoach").style.display="none";
+ if($("coachSuggestionText"))$("coachSuggestionText").textContent="Hoàn thành bài nói để xem gợi ý.";
 }
 function answerTemplate(q, transcript){
  const t=sentenceCap(transcript);
@@ -519,6 +533,75 @@ function structureChecks(q,t){
    checks.push("Câu Information Provided nên nêu trực tiếp thời gian/sự kiện từ bảng.");
  return checks;
 }
+
+function targetRange(sec){
+ if(sec<=15)return [22,38];
+ if(sec<=30)return [50,75];
+ if(sec<=45)return [75,105];
+ return [95,135];
+}
+function timeFit(q,transcript,duration){
+ const wc=wordCount(transcript), [lo,hi]=targetRange(q.response||15);
+ let status="PHÙ HỢP";
+ if(wc&&wc<lo)status="HƠI NGẮN";
+ if(wc>hi)status="HƠI DÀI";
+ const wpm=duration&&wc?Math.round(wc/(duration/60)):0;
+ let msg=`Thời gian trả lời: ${q.response}s. Mục tiêu luyện tập khoảng ${lo}–${hi} từ.`;
+ if(status==="HƠI NGẮN")msg+=` Bài có ${wc} từ: nên thêm một lý do hoặc chi tiết.`;
+ else if(status==="HƠI DÀI")msg+=` Bài có ${wc} từ: nên rút gọn để kết thúc đúng giờ.`;
+ else if(wc)msg+=` Bài có ${wc} từ và đang ở vùng độ dài hợp lý.`;
+ if(wpm)msg+=` Tốc độ ghi nhận khoảng ${wpm} từ/phút.`;
+ return {wc,lo,hi,wpm,status,msg};
+}
+function pronunciationCandidates(q,transcript){
+ const stop=new Set("the a an and or but i you he she it we they is are am was were to of in on at for with my your this that because usually what how when where which would could should have has do does".split(" "));
+ const words=((transcript||"")+" "+(q.text||"")).toLowerCase().match(/[a-z]+(?:'[a-z]+)?/g)||[];
+ return [...new Set(words.filter(w=>w.length>=6&&!stop.has(w)))].slice(0,8);
+}
+function speakWord(w){
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(w);u.lang="en-US";u.rate=.78;speechSynthesis.speak(u);
+}
+function speakCoachText(id){
+ const el=$(id);if(!el)return;
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(el.textContent.trim());u.lang="en-US";u.rate=.92;speechSynthesis.speak(u);
+}
+function wordChips(words){
+ return words.length?words.map(w=>`<button class="wordChip" onclick='speakWord(${JSON.stringify(w)})'>🔊 ${escapeHtml(w)}</button>`).join(""):"Không có từ cụ thể cần luyện.";
+}
+function vocabUpgrades(transcript){
+ const pairs=[["good","beneficial"],["bad","unfavorable"],["cheap","affordable"],["expensive","costly"],["easy","convenient"],["important","essential"],["problem","issue"],["buy","purchase"],["job","position"]];
+ const low=(transcript||"").toLowerCase(),a=[];
+ for(const [x,y] of pairs)if(low.includes(x))a.push(`${x} → ${y}`);
+ return [...a,...topicWords(test.topic).slice(0,5).map(x=>`Topic: ${x}`)].slice(0,8);
+}
+function highScoreAnswer(q){
+ const topic=test.topic;
+ const exact={
+ "Shopping & Customer Service|4":"Before buying a product, I usually consider its quality, price, and customer reviews. I want to make sure it is reliable and worth the money.",
+ "Transportation & Commuting|3":"I usually get to work by bus because it is convenient and affordable.",
+ "Transportation & Commuting|4":"It usually takes me about thirty minutes to get there, depending on traffic.",
+ "Technology & Communication|3":"I use my smartphone every day for communication, work, entertainment, and finding information.",
+ "Health & Lifestyle|3":"I exercise three or four times a week because it helps me stay healthy and reduce stress.",
+ "Daily Life & Entertainment|3":"In my free time, I usually listen to music, watch movies, and spend time with my friends."
+ };
+ if(exact[`${topic}|${q.q}`])return exact[`${topic}|${q.q}`];
+ if(q.q===1)return "Read the passage itself aloud with clear word endings, natural sentence stress, and appropriate pauses.";
+ if(q.q===2)return "In this picture, I can see several people in a busy setting. In the foreground, some people are doing different activities. In the background, there are additional people and objects. Everyone seems focused on what they are doing. Overall, the scene looks active and natural.";
+ if(q.q===3||q.q===4)return freeModelAnswer(q);
+ if(q.q===5)return "I prefer the option that is more convenient because it saves time and reduces stress. For example, when I have a busy schedule, a practical choice helps me complete my tasks more efficiently.";
+ if(q.q>=6&&q.q<=8)return freeModelAnswer(q);
+ if(q.q===9)return "I would first identify the main cause of the problem and introduce a practical solution. I would communicate the plan clearly, test it for a short period, and review the results. This could solve the immediate issue and prevent it from happening again.";
+ if(q.q===10)return "I agree with the statement for two main reasons. First, it can make daily life more efficient. For example, people may save time and avoid unnecessary problems. Second, it can provide long-term benefits. For these reasons, I believe it is a practical approach.";
+ return "I would choose the option that provides the greatest long-term benefit. The main reason is that it can improve efficiency and quality of life. For example, it can help people use their time and resources more effectively. For these reasons, this would be my choice.";
+}
+function upgradedStudentAnswer(q,transcript){
+ const fixed=freeCorrections(transcript).fixed;
+ if(!fixed)return highScoreAnswer(q);
+ if(q.response<=15)return fixed;
+ if(q.response<=30)return `${fixed} This is important to me because it is practical and fits my daily routine.`;
+ return `${fixed} In addition, this can provide a useful long-term benefit. For example, it can save time, improve efficiency, and make the situation easier to manage.`;
+}
+
 function analyzeFreeCoach(auto=false){
  if(busy)return;
  const k=key(),saved=recordings.get(k);
@@ -532,7 +615,9 @@ function analyzeFreeCoach(auto=false){
    const corr=freeCorrections(transcript);
    const structure=structureChecks(q,transcript);
    const wc=wordCount(transcript), dur=saved.duration||q.response;
-   const vocab=topicWords(test.topic);
+   const timing=timeFit(q,transcript,dur);
+   const pronWords=pronunciationCandidates(q,transcript);
+   const vocab=vocabUpgrades(transcript);
    const result={
      transcript, word_count:wc, duration:dur,
      check_status:(corr.items.length+structure.length)?"CẦN SỬA":"ỔN",
@@ -544,17 +629,23 @@ function analyzeFreeCoach(auto=false){
      corrections:corr.items,
      structure_notes:structure,
      corrected_answer:corr.fixed||"Chưa có transcript để sửa câu của học viên.",
-     safe_answer:freeModelAnswer(q),
-     advanced_answer:upgradeAnswer(q,corr.fixed),
+     safe_answer:highScoreAnswer(q),
+     advanced_answer:upgradedStudentAnswer(q,transcript),
      suggested_vocabulary:vocab,
+     pronunciation_words:pronWords,
+     timing,
      disclaimer:"FREE COACH là bộ phân tích trên trình duyệt. Không chấm CEFR/TOEIC/IELTS hay phát âm như điểm thi chính thức."
    };
    results.set(k,result);renderQuick(result);renderDetail(result);
    if($("coachSuggestionText"))$("coachSuggestionText").textContent=result.safe_answer;
+   if($("wideCoach"))$("wideCoach").style.display="block";
    if($("wideTranscript"))$("wideTranscript").textContent=result.transcript||"Không nhận được script từ trình duyệt. Bản ghi âm vẫn được giữ để nghe lại.";
    if($("wideCorrected"))$("wideCorrected").textContent=result.corrected_answer||"—";
    if($("wideSuggestion"))$("wideSuggestion").textContent=result.safe_answer||freeModelAnswer(q);
    if($("wideAdvanced"))$("wideAdvanced").textContent=result.advanced_answer||"—";
+   if($("pronunciationWords"))$("pronunciationWords").innerHTML=wordChips(result.pronunciation_words||[]);
+   if($("vocabUpgrade"))$("vocabUpgrade").innerHTML=(result.suggested_vocabulary||[]).map(x=>`<span class="wordChip">${escapeHtml(x)}</span>`).join("")||"Không có đề xuất cụ thể.";
+   if($("timeFitText"))$("timeFitText").textContent=result.timing?.msg||"—";
    if($("wideNotes")){
      const notes=[...(result.corrections||[]),...(result.structure_notes||[])];
      $("wideNotes").textContent=notes.length?notes.map((x,i)=>`${i+1}. ${x}`).join("\n"):result.summary;
