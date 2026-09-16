@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Henry English • TOEIC Speaking AI</title>
+<title>Henry English • TOEIC Speaking FREE COACH</title>
 <style>
 :root{
  --ink:#17213a;--muted:#74809b;--line:#e7eaf3;--bg:#f4f6ff;--card:#fff;
@@ -45,7 +45,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 @media(max-width:800px){.resourceCards{grid-template-columns:1fr}}
 
 
-/* ===== AI COACH LAYOUT FIX ===== */
+/* ===== FREE COACH LAYOUT FIX ===== */
 .side{
   grid-template-rows: 190px 150px minmax(245px,1fr) 52px !important;
   overflow:hidden !important;
@@ -90,7 +90,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 <body>
 
 <section id="welcome" class="screen active"><div class="app">
- <div class="top"><div class="brand"><span class="logo">🎓</span><div>Henry English<small>ENGLISH EXAM LEARNING SPACE</small></div></div><button class="btn ghost" onclick="testAI()">🤖 Kiểm tra AI</button></div>
+ <div class="top"><div class="brand"><span class="logo">🎓</span><div>Henry English<small>ENGLISH EXAM LEARNING SPACE</small></div></div><button class="btn ghost" onclick="testFreeCoach()">🆓 Kiểm tra FREE COACH</button></div>
  <div class="homebody"><div class="hero"><div class="eyebrow">HENRY ENGLISH</div><h1>Chọn chương trình học</h1><p>Mỗi lần bấm chuyển sang một màn hình riêng. TOEIC và IELTS được tách thành các nhánh Speaking / Writing.</p></div>
  <div class="tests" style="grid-template-columns:repeat(2,1fr)">
   <div class="test" onclick="show('toeicHub')"><b>🎯 TOEIC</b><small>Speaking • Writing • Resource Bank</small></div>
@@ -123,8 +123,8 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 </div></section>
 
 <section id="speakingHub" class="screen"><div class="app">
- <div class="top"><button class="btn ghost" onclick="show('toeicHub')">← TOEIC</button><div class="brand"><span class="logo">🎙️</span><div>TOEIC Speaking<small>10 MOCK TESTS • AI PRACTICE</small></div></div><button class="btn ghost" onclick="show('resourceHub')">📚 Kho từ vựng</button></div>
- <div class="homebody"><div class="hero"><div class="eyebrow">TOEIC SPEAKING</div><h1>Luyện Speaking theo từng Part</h1><p>Preparation tự chạy → tự ghi âm → AI nhận xét, phát hiện lỗi, sửa lỗi và gợi ý câu trả lời.</p></div>
+ <div class="top"><button class="btn ghost" onclick="show('toeicHub')">← TOEIC</button><div class="brand"><span class="logo">🎙️</span><div>TOEIC Speaking<small>10 MOCK TESTS • FREE COACH</small></div></div><button class="btn ghost" onclick="show('resourceHub')">📚 Kho từ vựng</button></div>
+ <div class="homebody"><div class="hero"><div class="eyebrow">TOEIC SPEAKING</div><h1>Luyện Speaking theo từng Part</h1><p>Preparation tự chạy → tự ghi âm → FREE COACH nhận transcript, kiểm tra lỗi cơ bản và gợi ý nâng cấp câu trả lời.</p></div>
  <div id="partbar" class="partbar"></div><div id="tests" class="tests"></div></div>
 </div></section>
 
@@ -158,18 +158,18 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
     <div class="recstate"><span class="recDot" id="recDot"></span><div><b id="recTitle">Chưa có bản ghi</b><div class="hint" id="recHint">Hệ thống sẽ tự ghi âm khi hết Preparation.</div></div></div>
     <audio id="audio" controls style="display:none"></audio><div class="miniBtns"><button class="btn ghost" onclick="replay()">▶ Nghe lại</button><button class="btn ghost" onclick="redo()">↻ Ghi lại</button></div>
    </div>
-   <div class="card ai"><div class="cardhead"><small>AI COACH</small><span class="status" id="aiBadge">CHƯA CHẤM</span></div><b>🤖 Nhận xét & nâng cấp</b>
-    <div class="scores"><div class="score"><small>OVERALL</small><b id="sOverall">—</b></div><div class="score"><small>CEFR</small><b id="sCefr">—</b></div><div class="score"><small>TOEIC</small><b id="sToeic">—</b></div></div>
-    <div class="aiSummary" id="aiSummary">Sau khi ghi âm, AI sẽ phân tích câu trả lời, phát hiện lỗi và đưa câu trả lời gợi ý.</div>
-    <button class="btn primary" id="aiBtn" onclick="analyzeAI()">🤖 AI CHẤM & GỢI Ý</button>
-    <button class="btn ghost" id="detailBtn" onclick="openAI()" style="display:none">XEM ĐÁNH GIÁ CHI TIẾT →</button>
+   <div class="card ai"><div class="cardhead"><small>FREE COACH</small><span class="status" id="aiBadge">SẴN SÀNG</span></div><b>🆓 Nhận xét & nâng cấp miễn phí</b>
+    <div class="scores"><div class="score"><small>SỐ TỪ</small><b id="sOverall">—</b></div><div class="score"><small>THỜI LƯỢNG</small><b id="sCefr">—</b></div><div class="score"><small>CHECK</small><b id="sToeic">—</b></div></div>
+    <div class="aiSummary" id="aiSummary">Sau khi ghi âm, FREE COACH sẽ dùng nhận dạng giọng nói của trình duyệt để kiểm tra câu trả lời. Không cần OpenAI credit.</div>
+    <button class="btn primary" id="aiBtn" onclick="analyzeFreeCoach()">🆓 FREE COACH PHÂN TÍCH</button>
+    <button class="btn ghost" id="detailBtn" onclick="openAI()" style="display:none">XEM FREE COACH CHI TIẾT →</button>
    </div>
    <div class="actions"><button class="btn danger" onclick="skip()">Bỏ qua</button><button class="btn primary" onclick="next()">Câu tiếp theo →</button></div>
   </aside>
  </div>
 </div></section>
 
-<div class="modal" id="aiModal"><div class="modalbox"><div class="modaltop"><div><b style="font-size:20px">🤖 AI Speaking Coach</b><div class="hint">Đánh giá dựa trên câu trả lời vừa ghi âm</div></div><button class="btn ghost" onclick="closeAI()">✕ Đóng</button></div><div class="modalbody" id="aiBody"></div></div></div>
+<div class="modal" id="aiModal"><div class="modalbox"><div class="modaltop"><div><b style="font-size:20px">🆓 FREE Speaking Coach</b><div class="hint">Phân tích miễn phí trên trình duyệt • không gọi OpenAI API</div></div><button class="btn ghost" onclick="closeAI()">✕ Đóng</button></div><div class="modalbody" id="aiBody"></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -184,6 +184,9 @@ const PARTS=[
 ];
 let part=1,test=null,questions=[],qi=0,timer=null,recorder=null,stream=null,chunks=[];
 let blob=null,url=null,recordKey="",sound=true,busy=false;
+let speechRec=null, liveTranscript="", finalTranscript="", speechSupported=false, recordingStartedAt=0;
+const SpeechRecognitionAPI=window.SpeechRecognition||window.webkitSpeechRecognition;
+speechSupported=!!SpeechRecognitionAPI;
 const recordings=new Map(),results=new Map();
 
 const $=id=>document.getElementById(id);
@@ -205,7 +208,14 @@ function openTest(id){
  show("practice");renderQuestion();
 }
 function exitPractice(){stopEverything();show("speakingHub")}
-function stopEverything(){clearClock();if(recorder&&recorder.state!=="inactive")try{recorder.stop()}catch(e){};if(stream)stream.getTracks().forEach(t=>t.stop());stream=null}
+function stopEverything(){
+ clearClock();
+ if(speechRec)try{speechRec.stop()}catch(e){}
+ speechRec=null;
+ if(recorder&&recorder.state!=="inactive")try{recorder.stop()}catch(e){}
+ if(stream)stream.getTracks().forEach(t=>t.stop());
+ stream=null;
+}
 
 function renderQuestion(){
  clearClock(); if(recorder&&recorder.state!=="inactive")try{recorder.stop()}catch(e){};
@@ -231,11 +241,21 @@ function renderQuestion(){
 function goQ(i){if(i<0||i>=questions.length)return;stopEverything();qi=i;renderQuestion()}
 function restore(){
  const saved=recordings.get(key());const a=$("audio");
- if(saved){blob=saved.blob;url=saved.url;recordKey=key();a.src=url;a.style.display="block";$("recBadge").textContent="ĐÃ GHI";$("recTitle").textContent="Bản ghi đã sẵn sàng";$("recHint").textContent="Bạn có thể nghe lại, ghi lại hoặc gửi AI."}
+ if(saved){blob=saved.blob;url=saved.url;recordKey=key();a.src=url;a.style.display="block";$("recBadge").textContent="ĐÃ GHI";$("recTitle").textContent="Bản ghi đã sẵn sàng";$("recHint").textContent="Bạn có thể nghe lại, ghi lại hoặc dùng FREE COACH."}
  else{a.pause();a.removeAttribute("src");a.style.display="none";$("recBadge").textContent="CHƯA CÓ";$("recTitle").textContent="Chưa có bản ghi";$("recHint").textContent="Hệ thống sẽ tự ghi âm khi hết Preparation."}
 }
 function resetAI(){
- const r=results.get(key());if(r){renderQuick(r);$("detailBtn").style.display="block";$("aiBtn").style.display="none"}else{$("sOverall").textContent=$("sCefr").textContent=$("sToeic").textContent="—";$("aiBadge").textContent="CHƯA CHẤM";$("aiSummary").textContent="Sau khi ghi âm, AI sẽ phân tích câu trả lời, phát hiện lỗi và đưa câu trả lời gợi ý.";$("detailBtn").style.display="none";$("aiBtn").style.display="block"}
+ const r=results.get(key());
+ if(r){
+   renderQuick(r);$("detailBtn").style.display="block";$("aiBtn").style.display="none";
+ }else{
+   $("sOverall").textContent=$("sCefr").textContent=$("sToeic").textContent="—";
+   $("aiBadge").textContent="SẴN SÀNG";
+   $("aiSummary").textContent=speechSupported
+     ?"FREE COACH sẽ nhận transcript trong lúc bạn nói, kiểm tra lỗi cơ bản và gợi ý câu trả lời."
+     :"Trình duyệt này chưa hỗ trợ Speech Recognition. Bản ghi vẫn hoạt động nhưng FREE COACH cần Chrome/Edge hỗ trợ nhận dạng giọng nói.";
+   $("detailBtn").style.display="none";$("aiBtn").style.display="block";
+ }
 }
 function countdown(sec,mode,done){
  clearClock();let n=sec,initial=Math.max(1,sec);$("clock").textContent=n;$("phase").textContent=mode;$("ring").style.setProperty("--deg","360deg");
@@ -247,54 +267,210 @@ function startPreparation(){
  countdown(q.prep,`PREPARATION TIME • ${q.prep}s`,()=>beginRecording(q.response));
 }
 async function beginRecording(sec){
- const q=questions[qi],k=key();$("phase").textContent=`● RECORDING • ${sec}s`;$("hint").textContent="Đang ghi âm câu trả lời của bạn…";$("recDot").classList.add("live");$("recTitle").textContent="Đang ghi âm";$("recBadge").textContent="ĐANG GHI";
+ const q=questions[qi],k=key();
+ $("phase").textContent=`● RECORDING • ${sec}s`;
+ $("hint").textContent="Đang ghi âm + nhận transcript cho FREE COACH…";
+ $("recDot").classList.add("live");$("recTitle").textContent="Đang ghi âm";$("recBadge").textContent="ĐANG GHI";
+ finalTranscript="";liveTranscript="";recordingStartedAt=Date.now();
+
  try{
    stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
    if(key()!==k){stream.getTracks().forEach(t=>t.stop());return}
-   chunks=[];let opt={};if(MediaRecorder.isTypeSupported("audio/webm;codecs=opus"))opt.mimeType="audio/webm;codecs=opus";
-   recorder=new MediaRecorder(stream,opt);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
-   recorder.onstop=()=>{const b=new Blob(chunks,{type:recorder.mimeType||"audio/webm"}),u=URL.createObjectURL(b);recordings.set(k,{blob:b,url:u,mime:b.type});if(key()===k){blob=b;url=u;recordKey=k;restore();$("recDot").classList.remove("live");$("phase").textContent="HOÀN THÀNH";$("hint").textContent="Đã lưu bản ghi. AI đang sẵn sàng chấm.";setTimeout(()=>analyzeAI(true),250)};stream?.getTracks().forEach(t=>t.stop())};
-   recorder.start();beep(760,.1);countdown(sec,`● RECORDING • ${sec}s`,()=>{if(recorder&&recorder.state!=="inactive")recorder.stop()});
- }catch(e){$("recDot").classList.remove("live");$("recBadge").textContent="LỖI MIC";$("recTitle").textContent="Không mở được microphone";$("recHint").textContent="Hãy cho phép microphone trong Chrome rồi bấm Ghi lại.";toast("Chrome chưa cho phép microphone.")}
+
+   // FREE live speech-to-text (browser capability; no OpenAI API)
+   if(SpeechRecognitionAPI){
+     try{
+       speechRec=new SpeechRecognitionAPI();
+       speechRec.lang="en-US";
+       speechRec.continuous=true;
+       speechRec.interimResults=true;
+       speechRec.onresult=e=>{
+         let interim="";
+         for(let i=e.resultIndex;i<e.results.length;i++){
+           const t=e.results[i][0].transcript;
+           if(e.results[i].isFinal) finalTranscript+=(finalTranscript?" ":"")+t.trim();
+           else interim+=t;
+         }
+         liveTranscript=(finalTranscript+" "+interim).trim();
+         $("recHint").textContent=liveTranscript?`Đang nghe: ${liveTranscript.slice(-95)}`:"Đang nghe giọng nói…";
+       };
+       speechRec.onerror=e=>console.warn("Speech recognition:",e.error);
+       speechRec.start();
+     }catch(e){console.warn("Speech recognition start:",e)}
+   }
+
+   chunks=[];let opt={};
+   if(MediaRecorder.isTypeSupported("audio/webm;codecs=opus"))opt.mimeType="audio/webm;codecs=opus";
+   recorder=new MediaRecorder(stream,opt);
+   recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+   recorder.onstop=()=>{
+     if(speechRec)try{speechRec.stop()}catch(e){}
+     speechRec=null;
+     const duration=Math.max(1,Math.round((Date.now()-recordingStartedAt)/1000));
+     const b=new Blob(chunks,{type:recorder.mimeType||"audio/webm"}),u=URL.createObjectURL(b);
+     const transcript=(finalTranscript||liveTranscript||"").trim();
+     recordings.set(k,{blob:b,url:u,mime:b.type,transcript,duration});
+     if(key()===k){
+       blob=b;url=u;recordKey=k;restore();
+       $("recDot").classList.remove("live");$("phase").textContent="HOÀN THÀNH";
+       $("hint").textContent="Đã lưu bản ghi. FREE COACH đang phân tích.";
+       setTimeout(()=>analyzeFreeCoach(true),250);
+     }
+     stream?.getTracks().forEach(t=>t.stop());
+   };
+   recorder.start();beep(760,.1);
+   countdown(sec,`● RECORDING • ${sec}s`,()=>{if(recorder&&recorder.state!=="inactive")recorder.stop()});
+ }catch(e){
+   $("recDot").classList.remove("live");$("recBadge").textContent="LỖI MIC";
+   $("recTitle").textContent="Không mở được microphone";
+   $("recHint").textContent="Hãy cho phép microphone trong Chrome rồi bấm Ghi lại.";
+   toast("Chrome chưa cho phép microphone.");
+ }
 }
 function replay(){const s=recordings.get(key());if(!s)return toast("Chưa có bản ghi.");$("audio").src=s.url;$("audio").style.display="block";$("audio").play().catch(()=>{})}
 function redo(){const k=key();recordings.delete(k);results.delete(k);stopEverything();restore();resetAI();setTimeout(startPreparation,100)}
 function next(){stopEverything();if(qi<questions.length-1){qi++;renderQuestion()}else{toast("Bạn đã hoàn thành Part này.");setTimeout(exitPractice,900)}}
 function skip(){stopEverything();if(qi<questions.length-1){qi++;renderQuestion()}else exitPractice()}
 
-async function testAI(){try{const r=await fetch("/api/test-ai");const j=await r.json();toast(j.openai_connected?"OpenAI đã kết nối ✓":"AI chưa kết nối")}catch(e){toast("Không kết nối được backend.")}}
-async function analyzeAI(auto=false){
- if(busy)return;const k=key(),saved=recordings.get(k);if(!saved){if(!auto)toast("Hãy ghi âm trước.");return}
- const q=questions[qi];busy=true;$("aiBadge").textContent="ĐANG CHẤM";$("aiSummary").textContent="AI đang nghe, chuyển giọng nói thành văn bản và phân tích…";$("aiBtn").classList.add("loading");
- try{
-  const fd=new FormData();fd.append("audio",saved.blob,`q${q.q}.${saved.mime.includes("mp4")?"m4a":"webm"}`);fd.append("question",q.text);fd.append("question_number",q.q);fd.append("question_type",PARTS[part-1].name);fd.append("test_id",test.id);fd.append("topic",test.topic);
-  const res=await fetch("/api/toeic/analyze",{method:"POST",body:fd});const j=await res.json();if(!res.ok||j.success===false)throw new Error(j.error||"AI error");
-  const r=j.result||j;r.transcript=r.transcript||j.transcript||"";results.set(k,r);renderQuick(r);renderDetail(r);$("detailBtn").style.display="block";$("aiBtn").style.display="none";toast("AI đã chấm xong ✓");
- }catch(e){
-   console.error("AI Coach error:",e);
-   $("aiBadge").textContent="LỖI";
-   $("sOverall").textContent=$("sCefr").textContent=$("sToeic").textContent="—";
-   $("aiSummary").innerHTML=`<b>AI chưa chấm được.</b><br>${escapeHtml(e.message||"Lỗi không xác định")}<br><small>Bấm AI CHẤM & GỢI Ý để thử lại.</small>`;
-   $("aiBtn").style.display="block";
-   $("detailBtn").style.display="none";
-   if(!auto)toast("AI Coach gặp lỗi — xem thông báo trong khung AI.");
- }
- finally{busy=false;$("aiBtn").classList.remove("loading")}
+function testFreeCoach(){
+ toast(speechSupported?"FREE COACH sẵn sàng ✓ Không cần OpenAI credit":"Hãy dùng Chrome/Edge có Speech Recognition.");
 }
-function renderQuick(r){$("aiBadge").textContent="ĐÃ CHẤM";$("sOverall").textContent=r.overall_score??"—";$("sCefr").textContent=r.cefr||"—";$("sToeic").textContent=r.toeic_speaking??"—";$("aiSummary").textContent=r.summary||r.cefr_description||"Đã có kết quả AI."}
+
+function normalizeText(s=""){return s.replace(/\s+/g," ").trim()}
+function wordCount(s=""){return normalizeText(s)?normalizeText(s).split(" ").length:0}
+function sentenceCap(s=""){
+ s=normalizeText(s);
+ if(!s)return "";
+ return s.charAt(0).toUpperCase()+s.slice(1)+( /[.!?]$/.test(s)?"":".");
+}
+function freeCorrections(t){
+ const rules=[
+  [/\bi am agree\b/gi,"I agree","Dùng “I agree”, không dùng “I am agree”."],
+  [/\bi am disagree\b/gi,"I disagree","Dùng “I disagree”, không dùng “I am disagree”."],
+  [/\bit cheap\b/gi,"it is cheap","Thiếu động từ “is” sau “it”."],
+  [/\bit convenient\b/gi,"it is convenient","Thiếu động từ “is” sau “it”."],
+  [/\beveryday\b/gi,"every day","Khi mang nghĩa “mỗi ngày”, dùng “every day”."],
+  [/\bpeople is\b/gi,"people are","“People” đi với “are”."],
+  [/\bpeople has\b/gi,"people have","“People” đi với “have”."],
+  [/\bthere is many\b/gi,"there are many","Danh từ số nhiều dùng “there are”."],
+  [/\bmore easier\b/gi,"easier","Không dùng so sánh kép “more easier”."],
+  [/\bmore better\b/gi,"better","Không dùng so sánh kép “more better”."],
+  [/\bI usually go to (work|school) by the bus\b/gi,"I usually go to $1 by bus","Với phương tiện chung, nói “by bus/train/car”."],
+  [/\bdepend of\b/gi,"depend on","Cụm đúng là “depend on”."],
+  [/\bdiscuss about\b/gi,"discuss","“Discuss” không cần “about”."],
+  [/\badvices\b/gi,"advice","“Advice” là danh từ không đếm được."],
+  [/\binformations\b/gi,"information","“Information” là danh từ không đếm được."]
+ ];
+ let fixed=t, items=[];
+ for(const [re,to,msg] of rules){
+   if(re.test(fixed)){re.lastIndex=0;fixed=fixed.replace(re,to);items.push(msg)}
+ }
+ return {fixed:sentenceCap(fixed),items};
+}
+function topicWords(topic=""){
+ const bank=(DATA.words||[]).find(x=>topic.toLowerCase().split("&")[0].trim().includes(x.topic.toLowerCase().split("&")[0].trim())||x.topic.toLowerCase().includes(topic.toLowerCase().split("&")[0].trim()));
+ return bank?bank.items.slice(0,8).map(x=>x[0]):[];
+}
+function answerTemplate(q, transcript){
+ const t=sentenceCap(transcript);
+ const n=q.q;
+ if(n===1)return t||"Read the passage clearly with accurate pauses, stress, and sentence endings.";
+ if(n===2)return t||"In this picture, I can see several people. In the foreground, ... In the background, ... They appear to be ... Overall, the scene looks ...";
+ if(n===3||n===4)return t||"I usually ... because ...";
+ if(n===5)return t||"I prefer ... for two reasons. First, ... Second, ... Therefore, ...";
+ if(n===6||n===7)return t||"According to the schedule, ...";
+ if(n===8)return t||"I would recommend ... because it is scheduled at ... and it matches the person's needs.";
+ if(n===9)return t||"I would recommend ... First, this would ... In addition, ... As a result, the company could ...";
+ if(n===10)return t||"I agree/disagree with the statement. First, ... For example, ... Second, ... Therefore, ...";
+ return t||"I would choose option A/B. The main reason is ... For example, ... Another reason is ... Therefore, ...";
+}
+function upgradeAnswer(q, transcript){
+ let base=sentenceCap(transcript);
+ if(!base)return answerTemplate(q,"");
+ if(q.q>=9)return `${base} In addition, this approach would be practical and could improve the situation in the long term. For example, it could save time and make the process more efficient.`;
+ if(q.q===5||q.q===8||q.q===10||q.q===11)return `${base} The main reason is that it is more practical and convenient. For example, it can save time and help people make better decisions.`;
+ return `${base} This is convenient for me and fits my daily routine.`;
+}
+function structureChecks(q,t){
+ const low=t.toLowerCase(), checks=[];
+ const words=wordCount(t);
+ if(words<4)checks.push("Câu trả lời quá ngắn; hãy thêm ít nhất một chi tiết.");
+ if([5,8,9,10,11].includes(q.q) && !/\b(because|reason|for example|for instance|first|second|therefore|so)\b/i.test(t))
+   checks.push("Nên thêm lý do hoặc ví dụ bằng because / for example / first / second.");
+ if(q.q===2 && !/\b(picture|foreground|background|left|right|wearing|standing|sitting|there is|there are)\b/i.test(t))
+   checks.push("Picture Description nên có vị trí/chi tiết: foreground, background, left/right, there is/are.");
+ if(q.q>=6&&q.q<=8 && !/\b(at|from|until|session|schedule|recommend)\b/i.test(t))
+   checks.push("Câu Information Provided nên nêu trực tiếp thời gian/sự kiện từ bảng.");
+ return checks;
+}
+function analyzeFreeCoach(auto=false){
+ if(busy)return;
+ const k=key(),saved=recordings.get(k);
+ if(!saved){if(!auto)toast("Hãy ghi âm trước.");return}
+ const q=questions[qi], transcript=normalizeText(saved.transcript||"");
+ busy=true;$("aiBadge").textContent="ĐANG CHECK";$("aiBtn").classList.add("loading");
+ try{
+   if(!speechSupported){
+     throw new Error("Trình duyệt chưa hỗ trợ Speech Recognition. Hãy thử Chrome/Edge.");
+   }
+   if(!transcript){
+     throw new Error("FREE COACH chưa nhận được transcript. Hãy ghi lại và nói rõ hơn, đồng thời cho phép quyền microphone/speech recognition.");
+   }
+   const corr=freeCorrections(transcript);
+   const structure=structureChecks(q,transcript);
+   const wc=wordCount(transcript), dur=saved.duration||q.response;
+   const vocab=topicWords(test.topic);
+   const result={
+     transcript, word_count:wc, duration:dur,
+     check_status:(corr.items.length+structure.length)?"CẦN SỬA":"ỔN",
+     summary:(corr.items.length+structure.length)
+       ?`FREE COACH phát hiện ${corr.items.length+structure.length} điểm nên xem lại.`
+       :`Câu trả lời có cấu trúc cơ bản ổn. Hãy nghe lại bản ghi để tự kiểm tra phát âm.`,
+     corrections:corr.items,
+     structure_notes:structure,
+     corrected_answer:corr.fixed,
+     safe_answer:answerTemplate(q,corr.fixed),
+     advanced_answer:upgradeAnswer(q,corr.fixed),
+     suggested_vocabulary:vocab,
+     disclaimer:"FREE COACH là bộ phân tích trên trình duyệt. Không chấm CEFR/TOEIC/IELTS hay phát âm như điểm thi chính thức."
+   };
+   results.set(k,result);renderQuick(result);renderDetail(result);
+   $("detailBtn").style.display="block";$("aiBtn").style.display="none";
+   toast("FREE COACH đã phân tích ✓");
+ }catch(e){
+   $("aiBadge").textContent="CHƯA NHẬN TEXT";
+   $("sOverall").textContent=$("sCefr").textContent=$("sToeic").textContent="—";
+   $("aiSummary").innerHTML=`<b>FREE COACH chưa phân tích được.</b><br>${escapeHtml(e.message)}`;
+   $("aiBtn").style.display="block";$("detailBtn").style.display="none";
+ }finally{busy=false;$("aiBtn").classList.remove("loading")}
+}
+function analyzeAI(auto=false){return analyzeFreeCoach(auto)}
+
+function renderQuick(r){
+ $("aiBadge").textContent=r.check_status||"ĐÃ CHECK";
+ $("sOverall").textContent=r.word_count??"—";
+ $("sCefr").textContent=r.duration?`${r.duration}s`:"—";
+ $("sToeic").textContent=r.check_status||"—";
+ $("aiSummary").textContent=r.summary||"FREE COACH đã phân tích.";
+}
 function arr(x){return Array.isArray(x)?x:[]}
 function renderDetail(r){
- const crit=r.criteria||{};const labels={vocabulary:"Vocabulary",grammar_accuracy:"Grammar Accuracy",grammar_range:"Grammar Range",fluency_coherence:"Fluency & Coherence",pronunciation:"Pronunciation",organization_task_achievement:"Organization & Task Achievement"};
- $("aiBody").innerHTML=`<div class="aiGrid"><div class="bigscore"><small>OVERALL</small><br><b>${escapeHtml(r.overall_score??"—")}</b></div><div class="bigscore"><small>CEFR</small><br><b>${escapeHtml(r.cefr||"—")}</b></div><div class="bigscore"><small>TOEIC / IELTS</small><br><b>${escapeHtml(r.toeic_speaking??"—")} / ${escapeHtml(r.ielts_speaking??"—")}</b></div></div>
+ $("aiBody").innerHTML=`
+ <div class="aiGrid">
+  <div class="bigscore"><small>SỐ TỪ</small><br><b>${escapeHtml(r.word_count??"—")}</b></div>
+  <div class="bigscore"><small>THỜI LƯỢNG</small><br><b>${escapeHtml(r.duration?`${r.duration}s`:"—")}</b></div>
+  <div class="bigscore"><small>FREE CHECK</small><br><b>${escapeHtml(r.check_status||"—")}</b></div>
+ </div>
  <div class="section"><h3>🎧 Transcript</h3><div class="answer">${escapeHtml(r.transcript||"")}</div></div>
- <div class="section"><h3>📊 6 tiêu chí</h3><div class="criteria">${Object.keys(labels).map(k=>{const c=crit[k]||{};return `<div class="criterion"><b><span>${labels[k]}</span><span>${escapeHtml(c.score??"—")}/10</span></b><div class="hint">${escapeHtml(c.feedback||"")}</div></div>`}).join("")}</div></div>
- <div class="section"><h3>🔎 Phát hiện & sửa lỗi</h3>${arr(r.corrections).length?`<ul>${arr(r.corrections).map(x=>`<li>${escapeHtml(typeof x==="string"?x:JSON.stringify(x))}</li>`).join("")}</ul>`:"<div class='hint'>Không có lỗi cụ thể được trả về.</div>"}</div>
- <div class="section"><h3>💪 Điểm mạnh</h3><ul>${arr(r.strengths).map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul><h3>🎯 Cần cải thiện</h3><ul>${arr(r.weaknesses).map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul></div>
- <div class="section"><h3>✅ Câu trả lời gợi ý an toàn</h3><div class="answer">${escapeHtml(r.safe_answer||"")}</div></div>
- <div class="section"><h3>🚀 Câu trả lời nâng cấp</h3><div class="answer">${escapeHtml(r.advanced_answer||"")}</div></div>
- <div class="section"><h3>📌 Mục tiêu tiếp theo</h3><div class="answer">${escapeHtml(r.next_target||"")}</div>${arr(r.improvement_plan).length?`<ul>${arr(r.improvement_plan).map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`:""}</div>`;
+ <div class="section"><h3>🔎 Lỗi cơ bản phát hiện được</h3>${arr(r.corrections).length?`<ul>${arr(r.corrections).map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`:"<div class='hint'>Không phát hiện lỗi nào trong bộ quy tắc hiện có.</div>"}</div>
+ <div class="section"><h3>🧩 Kiểm tra cấu trúc TOEIC</h3>${arr(r.structure_notes).length?`<ul>${arr(r.structure_notes).map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`:"<div class='hint'>Cấu trúc cơ bản phù hợp với dạng câu.</div>"}</div>
+ <div class="section"><h3>✏️ Câu đã sửa cơ bản</h3><div class="answer">${escapeHtml(r.corrected_answer||"")}</div></div>
+ <div class="section"><h3>✅ Mẫu trả lời an toàn</h3><div class="answer">${escapeHtml(r.safe_answer||"")}</div></div>
+ <div class="section"><h3>🚀 Gợi ý nâng cấp</h3><div class="answer">${escapeHtml(r.advanced_answer||"")}</div></div>
+ <div class="section"><h3>📚 Từ vựng gợi ý từ Resource Bank</h3><div class="answer">${arr(r.suggested_vocabulary).map(escapeHtml).join(" • ")||"—"}</div></div>
+ <div class="section"><h3>ℹ️ Giới hạn FREE COACH</h3><div class="hint">${escapeHtml(r.disclaimer||"")}</div></div>`;
 }
-function openAI(){const r=results.get(key());if(!r)return toast("Chưa có kết quả AI.");renderDetail(r);$("aiModal").classList.add("open")}
+function openAI(){const r=results.get(key());if(!r)return toast("Chưa có kết quả FREE COACH.");renderDetail(r);$("aiModal").classList.add("open")}
 function closeAI(){$("aiModal").classList.remove("open")}
 
 let resourceMode="words", resourceTopic=0;
