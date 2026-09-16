@@ -504,6 +504,226 @@ html,body{overflow:hidden!important}
 }
 </style>
 
+
+<style>
+/* =========================================================
+   HENRY ENGLISH — PRACTICE UI V4
+   Mục tiêu: không cuộn, nhìn thấy toàn bộ timer/record/AI/nút.
+   ========================================================= */
+@media (min-width: 801px){
+  #practice>.shell{
+    width:min(1640px,96vw)!important;
+    height:calc(100vh - 24px)!important;
+    max-height:none!important;
+  }
+  #practice .panel{
+    padding:10px 14px 12px!important;
+    border-radius:28px!important;
+  }
+  #practice .back{
+    height:24px!important;
+    margin:0 0 5px 4px!important;
+    display:flex!important;
+    align-items:center!important;
+  }
+  #practice .practice{
+    height:calc(100% - 29px)!important;
+  }
+  #practice .redesignedQcard{
+    height:100%!important;
+    min-height:0!important;
+  }
+  #practice .appHeader{
+    height:52px!important;
+    flex:0 0 52px!important;
+    padding:0 20px!important;
+  }
+  #practice .practiceHeader2{
+    min-height:56px!important;
+    flex:0 0 56px!important;
+    padding:8px 20px!important;
+  }
+  #practice .questionTabsWrap{
+    height:42px!important;
+    flex:0 0 42px!important;
+    padding:0 20px!important;
+  }
+  #practice .practiceBody{
+    grid-template-columns:minmax(0,1fr) 390px!important;
+    min-height:0!important;
+    height:calc(100% - 150px)!important;
+  }
+
+  /* Question canvas */
+  #practice .redesignedQuestionPanel{
+    padding:18px 26px 12px!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+  #practice .redesignedQuestionPanel .qtext{
+    font-size:clamp(21px,1.75vw,30px)!important;
+    line-height:1.25!important;
+    margin-bottom:10px!important;
+  }
+  #practice .redesignedQuestionPanel .qtext.compact{
+    font-size:clamp(18px,1.45vw,24px)!important;
+  }
+  #practice .redesignedQuestionPanel .qtext.tiny{
+    font-size:clamp(15px,1.2vw,20px)!important;
+  }
+  #practice .redesignedQuestionPanel .toeicPicture{
+    max-height:min(48vh,430px)!important;
+  }
+
+  /* Right side: all controls visible at once */
+  #practice .controlCenter{
+    padding:9px 10px!important;
+    gap:7px!important;
+    overflow:hidden!important;
+    display:grid!important;
+    grid-template-rows:164px 118px minmax(154px,1fr) 38px!important;
+    align-content:stretch!important;
+  }
+  #practice .controlCard{
+    padding:10px 12px!important;
+    border-radius:15px!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+
+  /* Timer becomes horizontal and much shorter */
+  #practice .timerCard{
+    position:relative!important;
+    display:grid!important;
+    grid-template-columns:112px minmax(0,1fr)!important;
+    grid-template-rows:auto auto 1fr!important;
+    column-gap:12px!important;
+    align-items:center!important;
+    padding:10px 12px!important;
+  }
+  #practice .timerCard .controlCardHead{
+    grid-column:1/-1!important;
+    margin-bottom:2px!important;
+  }
+  #practice .timerCircle{
+    grid-column:1!important;
+    grid-row:2/4!important;
+    width:98px!important;
+    height:98px!important;
+    margin:2px auto!important;
+  }
+  #practice .timerCircle .clock{font-size:31px!important}
+  #practice .phase{
+    grid-column:2!important;
+    grid-row:2!important;
+    margin:0 0 4px!important;
+    text-align:left!important;
+    font-size:9px!important;
+  }
+  #practice .timerHelp{
+    grid-column:2!important;
+    grid-row:3!important;
+    margin:0!important;
+    padding:7px 8px!important;
+    font-size:8px!important;
+    line-height:1.35!important;
+    align-self:start!important;
+  }
+  #practice .liveState{
+    position:absolute!important;
+    left:136px!important;
+    right:12px!important;
+    bottom:9px!important;
+    margin:0!important;
+    padding:5px 7px!important;
+  }
+
+  /* Recording */
+  #practice .recordingCard{padding:9px 12px!important}
+  #practice .recordingEmpty{padding:6px 0 2px!important}
+  #practice .micOrb{width:30px!important;height:30px!important;font-size:14px!important}
+  #practice #answerAudio{height:30px!important}
+  #practice .recordingReady{margin-top:4px!important}
+  #practice .recordingActions{margin-top:4px!important}
+  #practice .recordingActions .btn{height:28px!important;padding:0 6px!important}
+
+  /* AI is intentionally the most visible card */
+  #practice .aiQuickCard{
+    padding:10px 12px!important;
+    background:linear-gradient(180deg,#effdf7 0%,#ffffff 100%)!important;
+    border-color:#d8eee5!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #practice .quickScoreRow{
+    margin:7px 0!important;
+    gap:6px!important;
+  }
+  #practice .quickScoreRow>div{padding:6px!important}
+  #practice .quickScoreRow b{font-size:15px!important}
+  #practice .quickAIText{
+    margin:0 0 6px!important;
+    font-size:8px!important;
+    line-height:1.35!important;
+  }
+  #practice .aiMainBtn,
+  #practice .aiViewBtn{
+    min-height:31px!important;
+    padding:6px 8px!important;
+    font-size:8px!important;
+    margin-top:auto!important;
+  }
+
+  /* Bottom buttons are always visible */
+  #practice .controlActions{
+    display:grid!important;
+    grid-template-columns:105px 1fr!important;
+    gap:7px!important;
+    align-items:stretch!important;
+  }
+  #practice .controlActions .btn{
+    height:38px!important;
+    font-size:9px!important;
+    padding:0 8px!important;
+  }
+}
+
+/* Short laptop screens */
+@media (min-width:801px) and (max-height:780px){
+  #practice>.shell{height:calc(100vh - 12px)!important}
+  #practice .appHeader{height:46px!important;flex-basis:46px!important}
+  #practice .practiceHeader2{min-height:48px!important;flex-basis:48px!important}
+  #practice .questionTabsWrap{height:36px!important;flex-basis:36px!important}
+  #practice .practiceBody{height:calc(100% - 130px)!important}
+  #practice .controlCenter{
+    grid-template-rows:142px 104px minmax(132px,1fr) 34px!important;
+    gap:5px!important;
+    padding:6px 8px!important;
+  }
+  #practice .timerCard{grid-template-columns:92px minmax(0,1fr)!important}
+  #practice .timerCircle{width:78px!important;height:78px!important}
+  #practice .timerCircle .clock{font-size:25px!important}
+  #practice .liveState{left:112px!important;bottom:7px!important}
+  #practice .redesignedQuestionPanel{padding-top:12px!important}
+  #practice .redesignedQuestionPanel .qtext{font-size:20px!important}
+  #practice .redesignedQuestionPanel .toeicPicture{max-height:38vh!important}
+  #practice .controlActions .btn{height:34px!important}
+}
+
+/* AI Coach: detailed evaluation gets the whole app canvas */
+#aiCoach>.shell{
+  width:min(1500px,96vw)!important;
+  height:min(900px,94vh)!important;
+}
+#aiCoach .panel{overflow:hidden!important}
+#aiCoach .aiCoachWrap{
+  height:100%!important;
+  min-height:0!important;
+  overflow:auto!important;
+  padding-right:5px!important;
+}
+</style>
+
 </head>
 <body>
 <div id="app">
@@ -669,10 +889,10 @@ html,body{overflow:hidden!important}
             <div><span>TOEIC</span><b id="quickToeic">—</b></div>
           </div>
 
-          <div class="quickAIText" id="quickAIText">Sau khi ghi âm, bấm nút bên dưới để xem transcript, điểm 6 tiêu chí, lỗi sai và câu trả lời mẫu.</div>
+          <div class="quickAIText" id="quickAIText"><b>AI tự chấm sau khi ghi âm.</b> Kết quả chi tiết gồm transcript, 6 tiêu chí, lỗi sai và 2 câu trả lời gợi ý.</div>
 
           <button id="aiBtn" class="btn aiButton aiMainBtn" onclick="openAICoach()" style="display:none">🤖 AI CHẤM & GỢI Ý CÂU TRẢ LỜI</button>
-          <button id="viewAIResultBtn" class="btn ghost aiViewBtn" onclick="openAICoach()" style="display:none">Xem kết quả AI chi tiết →</button>
+          <button id="viewAIResultBtn" class="btn ghost aiViewBtn" onclick="openAICoach()" style="display:none">XEM ĐÁNH GIÁ & GỢI Ý AI →</button>
         </div>
 
         <div class="controlActions">
@@ -2258,6 +2478,64 @@ function redo(){
     autoAIStartedForKey=null;
     if(typeof baseOpenTest==="function") baseOpenTest(id);
   };
+})();
+</script>
+
+
+<script>
+/* PRACTICE V4 — explicit automatic preparation + clearer AI result access */
+(function(){
+  const oldRender = window.renderQuestion;
+  if(typeof oldRender === "function"){
+    window.renderQuestion = function(){
+      oldRender.apply(this, arguments);
+      try{
+        const q=currentQuestions[currentQ];
+        const status=document.getElementById("aiQuickStatus");
+        const key=typeof questionKey==="function" ? questionKey() : "";
+        const saved=(window.henryAIResults||{})[key];
+
+        if(status && saved){
+          status.textContent="ĐÃ CHẤM";
+          status.classList.add("ready");
+        }
+
+        const view=document.getElementById("viewAIResultBtn");
+        if(view && saved){
+          view.style.display="inline-flex";
+          view.textContent="XEM ĐÁNH GIÁ & GỢI Ý AI →";
+        }
+
+        /* renderQuestion in this build already starts Preparation after 180ms.
+           Keep the visible state explicit so learners know it is automatic. */
+        const badge=document.querySelector("#practice .autoStartBadge");
+        if(badge) badge.textContent="● TỰ ĐỘNG";
+        const live=document.getElementById("nextStatus");
+        if(live && q && !recordingStore.get(key)){
+          live.textContent=`Tự ghi âm sau ${q.prep}s`;
+        }
+      }catch(e){}
+    };
+  }
+
+  const oldResult = window.renderAIResult;
+  if(typeof oldResult === "function"){
+    window.renderAIResult = function(data){
+      oldResult.apply(this, arguments);
+      try{
+        const view=document.getElementById("viewAIResultBtn");
+        if(view){
+          view.style.display="inline-flex";
+          view.textContent="XEM ĐÁNH GIÁ & GỢI Ý AI →";
+        }
+        const text=document.getElementById("quickAIText");
+        if(text && data){
+          const summary=data.summary || data.cefr_description || "Đã có kết quả AI. Mở phần chi tiết để xem transcript, 6 tiêu chí, lỗi sai và câu trả lời gợi ý.";
+          text.textContent=summary;
+        }
+      }catch(e){}
+    };
+  }
 })();
 </script>
 
