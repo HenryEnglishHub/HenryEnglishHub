@@ -26,7 +26,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 .prompt{min-width:0;padding:24px 30px;overflow:auto;border-right:1px solid var(--line);position:relative}.eyebrow{font-size:12px;letter-spacing:.16em;color:#5968d9;font-weight:950}.prompt h2{font-size:clamp(23px,2vw,34px);line-height:1.28;margin:14px 0}.instruction{color:var(--muted);font-size:13px;font-weight:750}.qtext.long{font-size:20px;line-height:1.55;white-space:pre-wrap}.pictureWrap{height:calc(100% - 100px);min-height:360px;display:flex;align-items:center;justify-content:center}.pictureWrap img{max-width:100%;max-height:100%;object-fit:contain;border-radius:18px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .infoBox{margin-top:18px;border:1px solid #dfe5f2;border-radius:18px;overflow:hidden}.infoTitle{padding:13px 15px;background:#f4f6fb;font-weight:900}.infoRow{display:flex;justify-content:space-between;gap:20px;padding:10px 15px;border-top:1px solid var(--line)}.infoRow span{text-align:right;color:#59647b}
 .side{padding:12px;background:#f7f8fc;display:grid;grid-template-rows:190px 135px minmax(190px,1fr) 48px;gap:9px;min-height:0;overflow:hidden}.card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:13px;min-height:0}.cardhead{display:flex;justify-content:space-between;align-items:center}.cardhead small{font-weight:950;letter-spacing:.13em;color:#8a94aa}.status{font-size:10px;padding:6px 9px;border-radius:999px;background:var(--soft);color:#5d51d4;font-weight:950}
-.timerbody{display:grid;grid-template-columns:115px 1fr;gap:12px;align-items:center;margin-top:8px}.ring{width:108px;height:108px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--p) var(--deg,360deg),#e9ecf7 0);position:relative}.ring:after{content:"";position:absolute;inset:9px;background:#fff;border-radius:50%}.clock{position:relative;z-index:1;text-align:center}.clock b{display:block;font-size:34px}.clock small{font-weight:800;color:var(--muted)}.phase{font-size:13px;font-weight:950}.hint{font-size:11px;color:#64708a;line-height:1.45;margin-top:7px}.recording .recstate{display:flex;gap:10px;align-items:center;margin-top:10px}.mic{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#f0efff}.recording audio{width:100%;height:31px;margin-top:7px}.miniBtns{display:flex;gap:6px;margin-top:7px}.miniBtns .btn{padding:7px 9px;font-size:11px;flex:1}
+.timerbody{display:grid;grid-template-columns:115px 1fr;gap:12px;align-items:center;margin-top:8px}.ring{width:108px;height:108px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--p) var(--deg,360deg),#e9ecf7 0);position:relative}.ring:after{content:"";position:absolute;inset:9px;background:#fff;border-radius:50%}.clock{position:relative;z-index:1;text-align:center}.clock b{display:block;font-size:34px}.clock small{font-weight:800;color:var(--muted)}.phase{font-size:13px;font-weight:950}.hint{font-size:11px;color:#64708a;line-height:1.45;margin-top:7px}.recording .recstate{display:flex;gap:10px;align-items:center;margin-top:10px}.mic{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#f0efff}.recording audio{width:100%;height:31px;margin-top:7px}.miniBtns{display:flex;gap:6px;margin-top:7px}.miniBtns .btn{padding:7px 7px;font-size:10px;flex:1}
 .ai{background:linear-gradient(180deg,#effcf7,#fff);border-color:#d9eee6;overflow:hidden}.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:9px 0}.score{border:1px solid var(--line);background:#fff;border-radius:12px;padding:7px;text-align:center}.score small{display:block;color:#8993a8;font-size:9px;font-weight:900}.score b{font-size:18px}.aiSummary{font-size:11px;line-height:1.45;color:#5f6c7f;max-height:48px;overflow:hidden}.ai .btn{width:100%;margin-top:8px;padding:9px}
 .actions{display:grid;grid-template-columns:100px 1fr;gap:8px}.actions .btn{height:48px;padding:0 10px}
 .recDot{width:9px;height:9px;border-radius:50%;background:#aab1c2}.recDot.live{background:#e14450;box-shadow:0 0 0 6px #ffe7e9;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(.8)}}
@@ -47,7 +47,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 
 /* ===== FREE COACH LAYOUT FIX ===== */
 .side{
-  grid-template-rows: 190px 150px minmax(245px,1fr) 52px !important;
+  grid-template-rows: 180px 140px minmax(330px,1fr) 52px !important;
   overflow:hidden !important;
 }
 .ai{
@@ -75,7 +75,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 }
 #detailBtn{background:#fff !important}
 @media(max-height:820px) and (min-width:801px){
-  .side{grid-template-rows:165px 135px minmax(220px,1fr) 46px !important}
+  .side{grid-template-rows:155px 125px minmax(300px,1fr) 46px !important}
   .timerbody{grid-template-columns:90px 1fr !important}
   .ring{width:86px !important;height:86px !important}
   .clock b{font-size:27px !important}
@@ -83,6 +83,44 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
   .scores{margin:5px 0 !important}
   .score{padding:5px !important}
   .aiSummary{max-height:42px !important}
+}
+
+
+/* ===== WIDE FREE COACH RESULT ===== */
+.wideCoach{
+  margin-top:22px;
+  border:1px solid #d9eee6;
+  border-radius:20px;
+  background:linear-gradient(180deg,#effcf7,#fff);
+  overflow:hidden;
+}
+.wideCoachHead{
+  padding:13px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid #d9eee6;
+  font-size:13px;
+  letter-spacing:.04em;
+}
+.wideCoachHead>span:last-child{
+  padding:6px 10px;border-radius:999px;background:#fff;color:#168a67;font-weight:900;font-size:10px
+}
+.freeTag{background:#5d7df5;color:#fff;border-radius:5px;padding:3px 5px;font-size:9px}
+.wideCoachBody{padding:14px;display:grid;gap:10px}
+.wideBlock{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 15px}
+.wideBlock.emphasis{border-color:#cce9dd;background:#fbfffd}
+.wideBlock h3{margin:0 0 7px;font-size:13px}
+.wideText{font-size:14px;line-height:1.6;color:#4f5b78;white-space:pre-wrap;overflow-wrap:anywhere}
+.prompt{overflow:auto}
+.side{grid-template-rows:190px minmax(150px,1fr) 52px !important}
+.side>.ai{display:none !important}
+@media(max-height:820px) and (min-width:801px){
+ .side{grid-template-rows:165px minmax(140px,1fr) 46px !important}
+}
+@media(max-width:800px){
+ .wideCoach{margin-bottom:14px}
 }
 
 </style>
@@ -149,18 +187,50 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
  <div class="meta"><div class="metaLeft"><span class="pill" id="testBadge"></span><span class="topic" id="topic"></span></div><b id="questionLabel"></b></div>
  <div class="qtabs" id="qtabs"></div>
  <div class="work">
-  <main class="prompt"><div class="eyebrow" id="taskName"></div><h2 id="qtext"></h2><div class="instruction" id="instruction"></div><div id="special"></div></main>
+  <main class="prompt"><div class="eyebrow" id="taskName"></div><h2 id="qtext"></h2><div class="instruction" id="instruction"></div><div id="special"></div>
+    <section id="wideCoach" class="wideCoach">
+      <div class="wideCoachHead">
+        <div><span class="freeTag">FREE</span> <b>FREE COACH • KẾT QUẢ & GỢI Ý</b></div>
+        <span id="wideCoachStatus">SẴN SÀNG</span>
+      </div>
+      <div class="wideCoachBody">
+        <div class="wideBlock">
+          <h3>🎧 SCRIPT PHẦN GHI ÂM</h3>
+          <div id="wideTranscript" class="wideText">Sau khi ghi âm, script của học viên sẽ xuất hiện đầy đủ tại đây.</div>
+        </div>
+        <div class="wideBlock">
+          <h3>✏️ CÂU ĐÃ SỬA</h3>
+          <div id="wideCorrected" class="wideText">FREE COACH sẽ hiển thị câu đã sửa ở đây.</div>
+        </div>
+        <div class="wideBlock emphasis">
+          <h3>⭐ GỢI Ý CÂU TRẢ LỜI</h3>
+          <div id="wideSuggestion" class="wideText">Gợi ý sẽ tự động xuất hiện theo câu hỏi.</div>
+        </div>
+        <div class="wideBlock">
+          <h3>🚀 CÂU TRẢ LỜI NÂNG CẤP</h3>
+          <div id="wideAdvanced" class="wideText">Phiên bản nâng cấp sẽ xuất hiện sau khi FREE COACH phân tích.</div>
+        </div>
+        <div class="wideBlock">
+          <h3>🔎 NHẬN XÉT</h3>
+          <div id="wideNotes" class="wideText">Chưa có nhận xét.</div>
+        </div>
+      </div>
+    </section></main>
   <aside class="side">
    <div class="card timer"><div class="cardhead"><small>LIVE PRACTICE</small><span class="status" id="autoStatus">● TỰ ĐỘNG</span></div>
     <div class="timerbody"><div class="ring" id="ring"><div class="clock"><b id="clock">0</b><small>giây</small></div></div><div><div class="phase" id="phase">PREPARATION</div><div class="hint" id="hint"></div></div></div>
    </div>
    <div class="card recording"><div class="cardhead"><small>YOUR ANSWER</small><span class="status" id="recBadge">CHƯA CÓ</span></div>
     <div class="recstate"><span class="recDot" id="recDot"></span><div><b id="recTitle">Chưa có bản ghi</b><div class="hint" id="recHint">Hệ thống sẽ tự ghi âm khi hết Preparation.</div></div></div>
-    <audio id="audio" controls style="display:none"></audio><div class="miniBtns"><button class="btn ghost" onclick="replay()">▶ Nghe lại</button><button class="btn ghost" onclick="redo()">↻ Ghi lại</button></div>
+    <audio id="audio" controls style="display:none"></audio><div class="miniBtns"><button class="btn ghost" onclick="replay()">▶ Nghe lại</button><button class="btn ghost" onclick="redo()">↻ Ghi lại</button><button class="btn ghost" onclick="analyzeFreeCoach()">🆓 Phân tích</button></div>
    </div>
    <div class="card ai"><div class="cardhead"><small>FREE COACH</small><span class="status" id="aiBadge">SẴN SÀNG</span></div><b>🆓 Nhận xét & nâng cấp miễn phí</b>
     <div class="scores"><div class="score"><small>SỐ TỪ</small><b id="sOverall">—</b></div><div class="score"><small>THỜI LƯỢNG</small><b id="sCefr">—</b></div><div class="score"><small>CHECK</small><b id="sToeic">—</b></div></div>
     <div class="aiSummary" id="aiSummary">Sau khi ghi âm, FREE COACH sẽ dùng nhận dạng giọng nói của trình duyệt để kiểm tra câu trả lời. Không cần OpenAI credit.</div>
+     <div id="coachSuggestion" style="margin-top:7px;padding:9px 10px;border:1px solid #d9eee6;border-radius:12px;background:#fff;font-size:11px;line-height:1.45;max-height:105px;overflow:auto">
+       <b>⭐ GỢI Ý CÂU TRẢ LỜI</b>
+       <div id="coachSuggestionText" style="margin-top:4px;color:#4f5b78">Gợi ý sẽ tự động xuất hiện theo câu hỏi.</div>
+     </div>
     <button class="btn primary" id="aiBtn" onclick="analyzeFreeCoach()">🆓 FREE COACH PHÂN TÍCH</button>
     <button class="btn ghost" id="detailBtn" onclick="openAI()" style="display:none">XEM FREE COACH CHI TIẾT →</button>
    </div>
@@ -256,6 +326,7 @@ function resetAI(){
      :"Trình duyệt này chưa hỗ trợ Speech Recognition. Bản ghi vẫn hoạt động nhưng FREE COACH cần Chrome/Edge hỗ trợ nhận dạng giọng nói.";
    $("detailBtn").style.display="none";$("aiBtn").style.display="block";
  }
+ showAutomaticSuggestion();
 }
 function countdown(sec,mode,done){
  clearClock();let n=sec,initial=Math.max(1,sec);$("clock").textContent=n;$("phase").textContent=mode;$("ring").style.setProperty("--deg","360deg");
@@ -293,6 +364,8 @@ async function beginRecording(sec){
          }
          liveTranscript=(finalTranscript+" "+interim).trim();
          $("recHint").textContent=liveTranscript?`Đang nghe: ${liveTranscript.slice(-95)}`:"Đang nghe giọng nói…";
+         if($("wideTranscript"))$("wideTranscript").textContent=liveTranscript||"Đang nghe giọng nói…";
+         if($("wideCoachStatus"))$("wideCoachStatus").textContent="ĐANG NHẬN SCRIPT";
        };
        speechRec.onerror=e=>console.warn("Speech recognition:",e.error);
        speechRec.start();
@@ -371,6 +444,49 @@ function topicWords(topic=""){
  const bank=(DATA.words||[]).find(x=>topic.toLowerCase().split("&")[0].trim().includes(x.topic.toLowerCase().split("&")[0].trim())||x.topic.toLowerCase().includes(topic.toLowerCase().split("&")[0].trim()));
  return bank?bank.items.slice(0,8).map(x=>x[0]):[];
 }
+
+function freeModelAnswer(q){
+ const topic=test?.topic||"";
+ const info=test?.info?.pairs||[];
+ const pair=(i)=>info[i]||["",""];
+ if(q.q===1) return "Read the passage aloud clearly. Focus on natural pauses at commas and periods, accurate word endings, and steady pacing.";
+ if(q.q===2) return "In this picture, I can see several people in a real-life setting. In the foreground, there are people doing different activities. In the background, I can see other objects and details related to the location. The people appear to be busy and focused on what they are doing. Overall, the scene looks active and natural.";
+ if(q.q===3){
+   const m={
+    "Transportation & Commuting":"I usually get to work or school by bus because it is convenient and affordable.",
+    "Workplace & Employees":"During a typical workday, I usually check my email, attend meetings, and complete my assigned tasks.",
+    "Shopping & Customer Service":"I go shopping about once or twice a week, usually when I need groceries or household items.",
+    "Travel & Hotels":"I travel a few times a year, especially during holidays or when I have time off.",
+    "Technology & Communication":"I use my smartphone every day for communication, work, entertainment, and getting information.",
+    "Education & Training":"I really enjoyed studying English at school because it was useful and interesting.",
+    "Health & Lifestyle":"I exercise three or four times a week because it helps me stay healthy and reduce stress.",
+    "Environment & Community":"I try to protect the environment by reducing waste, reusing items, and saving electricity.",
+    "Business & Career":"In the future, I would like to have a stable job where I can use my skills and continue learning.",
+    "Daily Life & Entertainment":"In my free time, I usually listen to music, watch movies, and spend time with my friends."
+   }; return m[topic]||"I usually do this regularly because it is convenient and fits my daily routine.";
+ }
+ if(q.q===4) return "It depends on the situation, but I usually spend about thirty minutes on it. I try to plan my time carefully so that it does not affect my schedule.";
+ if(q.q===5) return "I think convenience is the most important factor. First, it helps me save time and avoid unnecessary stress. For example, I prefer an option that is easy to use and fits my schedule. Therefore, convenience would be my first choice.";
+ if(q.q===6 && pair(0)[0]) return `According to the schedule, the relevant event is listed in the program. I would check the timetable carefully and give the exact session and time shown there.`;
+ if(q.q===7 && pair(0)[0]) return "According to the schedule, I would choose the session that directly matches the person's interest and state its exact time.";
+ if(q.q===8 && pair(0)[0]) return "I would recommend the session that best matches the person's needs and availability. According to the schedule, it is offered at an appropriate time, so it would be the most suitable choice.";
+ if(q.q===9) return "I would recommend identifying the main cause of the problem first and introducing a practical solution. For example, the company could improve communication, adjust the schedule, or provide additional support. This would make the process more efficient and help prevent the same problem in the future.";
+ if(q.q===10) return "I agree with the statement for two main reasons. First, it can make people's daily lives more convenient and efficient. For example, it may save time and reduce unnecessary problems. Second, it can provide long-term benefits. Therefore, I believe this is a practical choice.";
+ if(q.q===11) return "I would choose the option that provides the greatest long-term benefit. The main reason is that it can improve both efficiency and quality of life. For example, it can help people use their time and resources more effectively. For these reasons, I think this option is more important.";
+ return "I would answer the question directly, give a clear reason, add a specific example, and finish with a short conclusion.";
+}
+function showAutomaticSuggestion(){
+ if(!questions?.length)return;
+ const suggestion=freeModelAnswer(questions[qi]);
+ const box=$("coachSuggestionText");
+ if(box)box.textContent=suggestion;
+ if($("wideSuggestion"))$("wideSuggestion").textContent=suggestion;
+ if($("wideTranscript"))$("wideTranscript").textContent="Sau khi ghi âm, script của học viên sẽ xuất hiện đầy đủ tại đây.";
+ if($("wideCorrected"))$("wideCorrected").textContent="FREE COACH sẽ hiển thị câu đã sửa ở đây.";
+ if($("wideAdvanced"))$("wideAdvanced").textContent="Phiên bản nâng cấp sẽ xuất hiện sau khi FREE COACH phân tích.";
+ if($("wideNotes"))$("wideNotes").textContent="Gợi ý mẫu đã sẵn sàng. Hãy ghi âm để nhận script và nhận xét.";
+ if($("wideCoachStatus"))$("wideCoachStatus").textContent="GỢI Ý SẴN SÀNG";
+}
 function answerTemplate(q, transcript){
  const t=sentenceCap(transcript);
  const n=q.q;
@@ -413,9 +529,6 @@ function analyzeFreeCoach(auto=false){
    if(!speechSupported){
      throw new Error("Trình duyệt chưa hỗ trợ Speech Recognition. Hãy thử Chrome/Edge.");
    }
-   if(!transcript){
-     throw new Error("FREE COACH chưa nhận được transcript. Hãy ghi lại và nói rõ hơn, đồng thời cho phép quyền microphone/speech recognition.");
-   }
    const corr=freeCorrections(transcript);
    const structure=structureChecks(q,transcript);
    const wc=wordCount(transcript), dur=saved.duration||q.response;
@@ -423,18 +536,30 @@ function analyzeFreeCoach(auto=false){
    const result={
      transcript, word_count:wc, duration:dur,
      check_status:(corr.items.length+structure.length)?"CẦN SỬA":"ỔN",
-     summary:(corr.items.length+structure.length)
-       ?`FREE COACH phát hiện ${corr.items.length+structure.length} điểm nên xem lại.`
-       :`Câu trả lời có cấu trúc cơ bản ổn. Hãy nghe lại bản ghi để tự kiểm tra phát âm.`,
+     summary:transcript
+       ?((corr.items.length+structure.length)
+         ?`FREE COACH phát hiện ${corr.items.length+structure.length} điểm nên xem lại.`
+         :`Câu trả lời có cấu trúc cơ bản ổn. Hãy nghe lại bản ghi để tự kiểm tra phát âm.`)
+       :"Không nhận được transcript, nhưng FREE COACH vẫn đưa ra câu trả lời gợi ý theo đúng câu hỏi.",
      corrections:corr.items,
      structure_notes:structure,
-     corrected_answer:corr.fixed,
-     safe_answer:answerTemplate(q,corr.fixed),
+     corrected_answer:corr.fixed||"Chưa có transcript để sửa câu của học viên.",
+     safe_answer:freeModelAnswer(q),
      advanced_answer:upgradeAnswer(q,corr.fixed),
      suggested_vocabulary:vocab,
      disclaimer:"FREE COACH là bộ phân tích trên trình duyệt. Không chấm CEFR/TOEIC/IELTS hay phát âm như điểm thi chính thức."
    };
    results.set(k,result);renderQuick(result);renderDetail(result);
+   if($("coachSuggestionText"))$("coachSuggestionText").textContent=result.safe_answer;
+   if($("wideTranscript"))$("wideTranscript").textContent=result.transcript||"Không nhận được script từ trình duyệt. Bản ghi âm vẫn được giữ để nghe lại.";
+   if($("wideCorrected"))$("wideCorrected").textContent=result.corrected_answer||"—";
+   if($("wideSuggestion"))$("wideSuggestion").textContent=result.safe_answer||freeModelAnswer(q);
+   if($("wideAdvanced"))$("wideAdvanced").textContent=result.advanced_answer||"—";
+   if($("wideNotes")){
+     const notes=[...(result.corrections||[]),...(result.structure_notes||[])];
+     $("wideNotes").textContent=notes.length?notes.map((x,i)=>`${i+1}. ${x}`).join("\n"):result.summary;
+   }
+   if($("wideCoachStatus"))$("wideCoachStatus").textContent=result.check_status||"ĐÃ PHÂN TÍCH";
    $("detailBtn").style.display="block";$("aiBtn").style.display="none";
    toast("FREE COACH đã phân tích ✓");
  }catch(e){
