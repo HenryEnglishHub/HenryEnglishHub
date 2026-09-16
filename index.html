@@ -209,7 +209,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
           <div id="wideTranscript" class="wideText">Sau khi ghi âm, script của học viên sẽ xuất hiện đầy đủ tại đây.</div>
         </div>
         <div class="wideBlock">
-          <h3>✏️ CÂU ĐÃ SỬA</h3>
+          <h3>✏️ CÂU ĐÃ SỬA • ENGLISH GRAMMAR</h3>
           <div id="wideCorrected" class="wideText">FREE COACH sẽ hiển thị câu đã sửa ở đây.</div>
         </div>
         <div class="wideBlock">
@@ -242,10 +242,7 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
           <div id="wideSuggestion" class="wideText">Gợi ý sẽ tự động xuất hiện theo câu hỏi.</div>
         </div>
         
-        <div class="wideBlock">
-          <h3>🔎 NHẬN XÉT</h3>
-          <div id="wideNotes" class="wideText">Chưa có nhận xét.</div>
-        </div>
+        
       </div>
     </section></main>
   <aside class="side">
@@ -447,29 +444,69 @@ function sentenceCap(s=""){
  if(!s)return "";
  return s.charAt(0).toUpperCase()+s.slice(1)+( /[.!?]$/.test(s)?"":".");
 }
-function freeCorrections(t){
- const rules=[
-  [/\bi am agree\b/gi,"I agree","Dùng “I agree”, không dùng “I am agree”."],
-  [/\bi am disagree\b/gi,"I disagree","Dùng “I disagree”, không dùng “I am disagree”."],
-  [/\bit cheap\b/gi,"it is cheap","Thiếu động từ “is” sau “it”."],
-  [/\bit convenient\b/gi,"it is convenient","Thiếu động từ “is” sau “it”."],
-  [/\beveryday\b/gi,"every day","Khi mang nghĩa “mỗi ngày”, dùng “every day”."],
-  [/\bpeople is\b/gi,"people are","“People” đi với “are”."],
-  [/\bpeople has\b/gi,"people have","“People” đi với “have”."],
-  [/\bthere is many\b/gi,"there are many","Danh từ số nhiều dùng “there are”."],
-  [/\bmore easier\b/gi,"easier","Không dùng so sánh kép “more easier”."],
-  [/\bmore better\b/gi,"better","Không dùng so sánh kép “more better”."],
-  [/\bI usually go to (work|school) by the bus\b/gi,"I usually go to $1 by bus","Với phương tiện chung, nói “by bus/train/car”."],
-  [/\bdepend of\b/gi,"depend on","Cụm đúng là “depend on”."],
-  [/\bdiscuss about\b/gi,"discuss","“Discuss” không cần “about”."],
-  [/\badvices\b/gi,"advice","“Advice” là danh từ không đếm được."],
-  [/\binformations\b/gi,"information","“Information” là danh từ không đếm được."]
- ];
- let fixed=t, items=[];
- for(const [re,to,msg] of rules){
-   if(re.test(fixed)){re.lastIndex=0;fixed=fixed.replace(re,to);items.push(msg)}
+function freeCorrections(input){
+ let s=normalizeText(input||"");
+ const original=s;
+ const items=[];
+ if(!s)return {fixed:"Chưa có transcript để sửa.",items,confidence:"none"};
+
+ function apply(re,to,msg){
+   const before=s;
+   s=s.replace(re,to);
+   if(s!==before && msg && !items.includes(msg))items.push(msg);
  }
- return {fixed:sentenceCap(fixed),items};
+ // Remove accidental immediate repetitions from speech recognition.
+ apply(/\b([A-Za-z]+)(?:\s+\1\b)+/gi,"$1","Loại bỏ từ bị lặp liên tiếp.");
+
+ // High-confidence missing forms of BE.
+ apply(/\bI\s+(a|an)\s+([a-z][a-z'-]*)\b/gi,"I am $1 $2","Thêm “am” sau chủ ngữ I.");
+ apply(/\b(he|she|it)\s+(a|an)\s+([a-z][a-z'-]*)\b/gi,"$1 is $2 $3","Thêm “is” sau he/she/it.");
+ apply(/\b(we|you|they)\s+(a|an)\s+([a-z][a-z'-]*)\b/gi,"$1 are $2 $3","Thêm “are” sau we/you/they.");
+ apply(/\bit\s+(cheap|expensive|good|bad|important|convenient|useful|easy|difficult|interesting|beautiful|busy|quiet|noisy)\b/gi,
+       "it is $1","Thêm động từ “is” trước tính từ.");
+ apply(/\b(they|we|you)\s+(good|bad|busy|happy|ready|important)\b/gi,
+       "$1 are $2","Thêm động từ “are” trước tính từ.");
+ apply(/\b(he|she)\s+(good|bad|busy|happy|ready|important)\b/gi,
+       "$1 is $2","Thêm động từ “is” trước tính từ.");
+
+ // Subject–verb agreement / common TOEIC errors.
+ apply(/\bpeople\s+is\b/gi,"people are","“People” dùng với “are”.");
+ apply(/\bpeople\s+has\b/gi,"people have","“People” dùng với “have”.");
+ apply(/\bthere\s+is\s+(many|several|a lot of)\b/gi,"there are $1","Danh từ số nhiều dùng “there are”.");
+ apply(/\bhe\s+have\b/gi,"he has","He dùng với “has”.");
+ apply(/\bshe\s+have\b/gi,"she has","She dùng với “has”.");
+ apply(/\bit\s+have\b/gi,"it has","It dùng với “has”.");
+
+ // Frequent usage errors.
+ apply(/\bI am agree\b/gi,"I agree","Dùng “I agree”, không dùng “I am agree”.");
+ apply(/\bI am disagree\b/gi,"I disagree","Dùng “I disagree”, không dùng “I am disagree”.");
+ apply(/\beveryday\b/gi,"every day","Khi mang nghĩa “mỗi ngày”, dùng “every day”.");
+ apply(/\bmore easier\b/gi,"easier","Không dùng so sánh kép “more easier”.");
+ apply(/\bmore better\b/gi,"better","Không dùng so sánh kép “more better”.");
+ apply(/\bdepend of\b/gi,"depend on","Cụm đúng là “depend on”.");
+ apply(/\bdiscuss about\b/gi,"discuss","“Discuss” không cần “about”.");
+ apply(/\badvices\b/gi,"advice","“Advice” là danh từ không đếm được.");
+ apply(/\binformations\b/gi,"information","“Information” là danh từ không đếm được.");
+ apply(/\bby the (bus|train|car|subway|taxi)\b/gi,"by $1","Với cấu trúc phương tiện này, dùng “by bus/train/car...”.");
+
+ // Basic punctuation/capitalization without inventing meaning.
+ s=s.replace(/\s+([,.!?])/g,"$1").replace(/([,.!?])([A-Za-z])/g,"$1 $2").trim();
+ if(s){
+   s=s.charAt(0).toUpperCase()+s.slice(1);
+   if(!/[.!?]$/.test(s))s+=".";
+ }
+
+ // Detect suspicious fragments instead of claiming they are correct.
+ const suspicious=[];
+ if(/\bthe way (?:a|an|the)?\s*[a-z'-]+[.!?]?$/i.test(s) || /\bthe way\s+(?:a|an|the)\s+[a-z'-]+\s+(?:is|are)?\s*$/i.test(s))
+   suspicious.push("Cụm “the way …” có vẻ chưa hoàn chỉnh; FREE COACH không tự đoán phần ý còn thiếu.");
+ if(/\b(I|you|we|they|he|she|it)\s+(?:a|an)\s+[a-z'-]+\b/i.test(s) && !/\bI am\b/i.test(s))
+   suspicious.push("Câu có thể vẫn thiếu động từ nối.");
+ if(s.split(/\s+/).length<3)
+   suspicious.push("Transcript quá ngắn để sửa ngữ pháp đáng tin cậy.");
+
+ items.push(...suspicious);
+ return {fixed:s,items,confidence:suspicious.length?"check":"rule"};
 }
 function topicWords(topic=""){
  const bank=(DATA.words||[]).find(x=>topic.toLowerCase().split("&")[0].trim().includes(x.topic.toLowerCase().split("&")[0].trim())||x.topic.toLowerCase().includes(topic.toLowerCase().split("&")[0].trim()));
@@ -679,10 +716,8 @@ function analyzeFreeCoach(auto=false){
      transcript, word_count:wc, duration:dur,
      check_status:(corr.items.length+structure.length)?"CẦN SỬA":"ỔN",
      summary:transcript
-       ?((corr.items.length+structure.length)
-         ?`FREE COACH phát hiện ${corr.items.length+structure.length} điểm nên xem lại.`
-         :`Câu trả lời có cấu trúc cơ bản ổn. Hãy nghe lại bản ghi để tự kiểm tra phát âm.`)
-       :"Không nhận được transcript, nhưng FREE COACH vẫn đưa ra câu trả lời gợi ý theo đúng câu hỏi.",
+       ?(corr.items.length?`Đã xử lý các lỗi ngữ pháp/quy tắc nhận diện được.`:`Không phát hiện lỗi thuộc bộ quy tắc chắc chắn hiện có.`)
+       :"Không nhận được transcript; FREE COACH vẫn cung cấp High-Score Sample Answer.",
      corrections:corr.items,
      structure_notes:structure,
      corrected_answer:corr.fixed||"Chưa có transcript để sửa câu của học viên.",
@@ -698,7 +733,12 @@ function analyzeFreeCoach(auto=false){
    if($("coachSuggestionText"))$("coachSuggestionText").textContent=result.safe_answer;
    if($("wideCoach"))$("wideCoach").style.display="block";
    if($("wideTranscript"))$("wideTranscript").textContent=result.transcript||"Không nhận được script từ trình duyệt. Bản ghi âm vẫn được giữ để nghe lại.";
-   if($("wideCorrected"))$("wideCorrected").textContent=result.corrected_answer||"—";
+   if($("wideCorrected")){
+     const grammarNotes=(result.corrections||[]);
+     $("wideCorrected").innerHTML=
+       `<div>${escapeHtml(result.corrected_answer||"—")}</div>`+
+       (grammarNotes.length?`<div style="margin-top:9px;padding-top:9px;border-top:1px dashed #dfe5f2;font-size:12px;color:#6f7890"><b>Grammar check:</b><br>${grammarNotes.map((x,i)=>`${i+1}. ${escapeHtml(x)}`).join("<br>")}</div>`:"");
+   }
    if($("wideSuggestion"))$("wideSuggestion").textContent=result.safe_answer||freeModelAnswer(q);
    if($("pronunciationWords"))$("pronunciationWords").innerHTML=wordChips(result.pronunciation_words||[]);
    if($("vocabUpgrade"))$("vocabUpgrade").innerHTML=(result.suggested_vocabulary||[]).map(x=>`<span class="wordChip">${escapeHtml(x)}</span>`).join("")||"Không có đề xuất cụ thể.";
@@ -707,10 +747,7 @@ function analyzeFreeCoach(auto=false){
    if($("taskDirect"))$("taskDirect").textContent=result.task_achievement?.direct||"—";
    if($("taskDetail"))$("taskDetail").textContent=result.task_achievement?.detail||"—";
    if($("taskAchievementText"))$("taskAchievementText").textContent=result.task_achievement?.text||"—";
-   if($("wideNotes")){
-     const notes=[...(result.corrections||[]),...(result.structure_notes||[])];
-     $("wideNotes").textContent=notes.length?notes.map((x,i)=>`${i+1}. ${x}`).join("\n"):result.summary;
-   }
+
    if($("wideCoachStatus"))$("wideCoachStatus").textContent=result.check_status||"ĐÃ PHÂN TÍCH";
    $("detailBtn").style.display="block";$("aiBtn").style.display="none";
    toast("FREE COACH đã phân tích ✓");
