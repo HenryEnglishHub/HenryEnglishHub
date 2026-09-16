@@ -44,6 +44,47 @@ button{font:inherit}.screen{display:none;height:100vh;padding:18px}.screen.activ
 .resourceItem b{display:block;margin-bottom:5px}.resourceItem small{color:var(--muted)}
 @media(max-width:800px){.resourceCards{grid-template-columns:1fr}}
 
+
+/* ===== AI COACH LAYOUT FIX ===== */
+.side{
+  grid-template-rows: 190px 150px minmax(245px,1fr) 52px !important;
+  overflow:hidden !important;
+}
+.ai{
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  padding:12px !important;
+}
+.ai .scores{
+  flex:0 0 auto;
+  margin:7px 0 !important;
+}
+.aiSummary{
+  flex:1 1 auto;
+  min-height:32px;
+  max-height:54px !important;
+  overflow:auto !important;
+  margin-bottom:6px;
+}
+.ai .btn{
+  flex:0 0 auto;
+  margin-top:5px !important;
+  padding:8px 9px !important;
+  min-height:34px;
+}
+#detailBtn{background:#fff !important}
+@media(max-height:820px) and (min-width:801px){
+  .side{grid-template-rows:165px 135px minmax(220px,1fr) 46px !important}
+  .timerbody{grid-template-columns:90px 1fr !important}
+  .ring{width:86px !important;height:86px !important}
+  .clock b{font-size:27px !important}
+  .card{padding:10px !important}
+  .scores{margin:5px 0 !important}
+  .score{padding:5px !important}
+  .aiSummary{max-height:42px !important}
+}
+
 </style>
 </head>
 <body>
@@ -228,8 +269,16 @@ async function analyzeAI(auto=false){
  try{
   const fd=new FormData();fd.append("audio",saved.blob,`q${q.q}.${saved.mime.includes("mp4")?"m4a":"webm"}`);fd.append("question",q.text);fd.append("question_number",q.q);fd.append("question_type",PARTS[part-1].name);fd.append("test_id",test.id);fd.append("topic",test.topic);
   const res=await fetch("/api/toeic/analyze",{method:"POST",body:fd});const j=await res.json();if(!res.ok||j.success===false)throw new Error(j.error||"AI error");
-  const r=j.result||j;r.transcript=r.transcript||j.transcript||"";results.set(k,r);renderQuick(r);renderDetail(r);$("detailBtn").style.display="block";$("aiBtn").style.display="none";$("aiModal").classList.add("open");
- }catch(e){$("aiBadge").textContent="LỖI";$("aiSummary").textContent=`Không chấm được: ${e.message}`;if(!auto)toast("AI chưa chấm được. Kiểm tra server.");}
+  const r=j.result||j;r.transcript=r.transcript||j.transcript||"";results.set(k,r);renderQuick(r);renderDetail(r);$("detailBtn").style.display="block";$("aiBtn").style.display="none";toast("AI đã chấm xong ✓");
+ }catch(e){
+   console.error("AI Coach error:",e);
+   $("aiBadge").textContent="LỖI";
+   $("sOverall").textContent=$("sCefr").textContent=$("sToeic").textContent="—";
+   $("aiSummary").innerHTML=`<b>AI chưa chấm được.</b><br>${escapeHtml(e.message||"Lỗi không xác định")}<br><small>Bấm AI CHẤM & GỢI Ý để thử lại.</small>`;
+   $("aiBtn").style.display="block";
+   $("detailBtn").style.display="none";
+   if(!auto)toast("AI Coach gặp lỗi — xem thông báo trong khung AI.");
+ }
  finally{busy=false;$("aiBtn").classList.remove("loading")}
 }
 function renderQuick(r){$("aiBadge").textContent="ĐÃ CHẤM";$("sOverall").textContent=r.overall_score??"—";$("sCefr").textContent=r.cefr||"—";$("sToeic").textContent=r.toeic_speaking??"—";$("aiSummary").textContent=r.summary||r.cefr_description||"Đã có kết quả AI."}
